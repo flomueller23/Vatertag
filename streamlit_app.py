@@ -46,8 +46,6 @@ if not st.session_state.spiel_started:
     col1, col2 = st.columns([0.2,0.2])
     with col1:
         buttonLaden = st.button("Spiel laden / starten")
-    with col2:
-        buttonLöschen = st.button('Spiel löschen')
         
     if buttonLaden and spielname:
         st.session_state.spielname = spielname
@@ -70,7 +68,7 @@ if not st.session_state.spiel_started:
         st.session_state.spiel_started = True
         st.rerun()
     
-if spielname:
+if st.session_state.spielname:
     with st.expander("⚠️ Spiel löschen", expanded=False):
         st.warning(f"Willst du das Spiel **{spielname}** wirklich löschen? Diese Aktion kann nicht rückgängig gemacht werden.")
         sicher = st.checkbox("Ja, ich will dieses Spiel wirklich löschen.")
