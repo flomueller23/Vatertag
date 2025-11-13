@@ -70,10 +70,19 @@ if not st.session_state.spiel_started:
         st.session_state.spiel_started = True
         st.rerun()
     
-    if buttonLöschen and spielname:
-        st.session_state.spielname = spielname
-        st.success("Spiel gelöscht")
-        st.rerun()
+    if spielname:
+    with st.expander("⚠️ Spiel löschen", expanded=False):
+        st.warning(f"Willst du das Spiel **{spielname}** wirklich löschen? Diese Aktion kann nicht rückgängig gemacht werden.")
+        sicher = st.checkbox("Ja, ich will dieses Spiel wirklich löschen.")
+        if st.button("Spiel endgültig löschen") and sicher:
+            try:
+                db.collection("spiele").document(spielname).delete()
+                st.success(f"Spiel '{spielname}' wurde gelöscht.")
+                st.session_state.spielname = None
+                st.session_state.spiel_started = False
+                st.rerun()
+            except Exception as e:
+                st.error(f"Fehler beim Löschen: {e}")
             
 # SPIEL SETUP
 if st.session_state.spiel_started and not st.session_state.spieler:
