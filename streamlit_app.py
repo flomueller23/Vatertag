@@ -31,10 +31,8 @@ if "spielname" not in st.session_state:
 if not st.session_state.spiel_started:
     st.subheader("Spielname eingeben oder auswählen")
 
-    # Vorhandene Spiele laden
     spiele_docs = db.collection("spiele").stream()
     spielnamen = sorted([doc.id for doc in spiele_docs])
-
     optionen = ["Neues Spiel erstellen"] + spielnamen
     auswahl = st.selectbox("Spiel auswählen", optionen)
 
@@ -46,8 +44,10 @@ if not st.session_state.spiel_started:
     col1, col2 = st.columns([0.2, 0.2])
     with col1:
         buttonLaden = st.button("Spiel laden / starten")
+    with col2:
+        buttonLöschen = st.button("Spiel löschen")
 
-    # ✅ Nur hier erscheint der Löschbereich
+    # ✅ Löschlogik nur hier
     if buttonLöschen and spielname:
         with st.expander("⚠️ Spiel löschen", expanded=True):
             st.warning(f"Willst du das Spiel **{spielname}** wirklich löschen? Diese Aktion kann nicht rückgängig gemacht werden.")
