@@ -54,8 +54,8 @@ if not st.session_state.spiel_started:
 
             # Checkbox-Zustand im Session State speichern
             st.checkbox("Ja, ich will dieses Spiel wirklich löschen.", key="loeschbestaetigung")
-
-        # Button prüft Session State
+ 
+        # Button prüft Session State – MUSS im selben Block stehen!
         if st.button("Spiel endgültig löschen") and st.session_state.get("loeschbestaetigung"):
             try:
                 db.collection("spiele").document(spielname).delete()
@@ -66,6 +66,7 @@ if not st.session_state.spiel_started:
                 st.rerun()
             except Exception as e:
                 st.error(f"Fehler beim Löschen: {e}")
+
        
     if buttonLaden and spielname:
         st.session_state.spielname = spielname
