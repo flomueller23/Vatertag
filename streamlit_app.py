@@ -43,10 +43,26 @@ if not st.session_state.spiel_started:
     else:
         spielname = auswahl
 
-    col1, col2 = st.columns([0.2,0.2])
+    col1, col2 = st.columns([0.2, 0.2])
     with col1:
         buttonLaden = st.button("Spiel laden / starten")
-        
+    with col2:
+        buttonLöschen = st.button("Spiel löschen")
+
+    # ✅ Löschbereich nur hier anzeigen
+    if buttonLöschen and spielname:
+        with st.expander("⚠️ Spiel löschen", expanded=True):
+            st.warning(f"Willst du das Spiel **{spielname}** wirklich löschen? Diese Aktion kann nicht rückgängig gemacht werden.")
+            sicher = st.checkbox("Ja, ich will dieses Spiel wirklich löschen.")
+            if st.button("Spiel endgültig löschen") and sicher:
+                try:
+                    db.collection("spiele").document(spielname).delete()
+                    st.success(f"Spiel '{spielname}' wurde gelöscht.")
+                    st.session_state.spielname = None
+                    st.rerun()
+                except Exception as e:
+                    st.error(f"Fehler beim Löschen: {e}")
+       
     if buttonLaden and spielname:
         st.session_state.spielname = spielname
         if auswahl != "Neues Spiel erstellen":
