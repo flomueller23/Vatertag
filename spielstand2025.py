@@ -182,8 +182,13 @@ aktueller_letzter = min(zwischenpunkte, key=zwischenpunkte.get)
 rundensieger = max(gewinne_der_runde, key=lambda x: x[1])
 bonus_empfaenger = letzter_spieler
 
-# Kommentare für alle abgeschlossenen Runden (alle außer der letzten)
-for j in range(len(rundendaten) - 1):
+# Kommentare nur für neue Runden generieren
+anzahl_bereits_kommentierter_runden = len(kommentare)
+anzahl_abgeschlossener_runden = len(rundendaten) - 1  # letzte Runde wird separat behandelt
+
+neue_kommentare = []
+
+for j in range(anzahl_bereits_kommentierter_runden, anzahl_abgeschlossener_runden):
     rd = rundendaten[j]
 
     kommentarblock = f"### 🕓 Runde {j+1}: *{rd['runde']}* ({rd['zeit']})\n"
@@ -206,9 +211,11 @@ for j in range(len(rundendaten) - 1):
             name=rd["bonus"]
         ) + "\n"
 
-    kommentare.append(kommentarblock)
+    neue_kommentare.append(kommentarblock)
 
-    # 🔐 Kommentare speichern
+# Nur speichern, wenn es neue Kommentare gibt
+if neue_kommentare:
+    kommentare.extend(neue_kommentare)
     db.collection("spiele").document(FESTER_SPIELNAME).update({
         "kommentare": kommentare
     })
