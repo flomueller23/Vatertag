@@ -41,9 +41,6 @@ if not st.session_state.spiel_started:
     else:
         st.session_state.spielname = auswahl
 
-    else:
-        st.session_state.spielname = auswahl
-
     col1, col2 = st.columns([0.2, 0.2])
     with col1:
         buttonLaden = st.button("Spiel laden / starten")
