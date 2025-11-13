@@ -37,7 +37,7 @@ if not st.session_state.spiel_started:
     auswahl = st.selectbox("Spiel auswählen", optionen)
 
     if auswahl == "Neues Spiel erstellen":
-        st.session_state.spielname = st.text_input("Neuer Spielname")
+        neuer_name = st.text_input("Neuer Spielname", key="neuer_spielname")
     else:
         st.session_state.spielname = auswahl
 
@@ -69,8 +69,14 @@ if "loeschkandidat" in st.session_state:
             except Exception as e:
                 st.error(f"Fehler beim Löschen: {e}")
        
-    if buttonLaden and st.session_state.spielname:
-        st.session_state.spielname = st.session_state.spielname
+ if buttonLaden:
+    if auswahl == "Neues Spiel erstellen":
+        if st.session_state.get("neuer_spielname"):
+            st.session_state.spielname = st.session_state.neuer_spielname
+        else:
+            st.warning("Bitte gib einen Spielnamen ein.")
+            st.stop()
+
         if auswahl != "Neues Spiel erstellen":
             # Vorhandenes Spiel laden
             spiel_doc = db.collection("spiele").document(st.session_state.spielname).get()
