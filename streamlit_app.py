@@ -49,17 +49,23 @@ if not st.session_state.spiel_started:
 
     # ✅ Löschlogik nur hier
     if buttonLöschen and spielname:
-        with st.expander("⚠️ Spiel löschen", expanded=True):
-            st.warning(f"Willst du das Spiel **{st.session_state.spielname}** wirklich löschen? Diese Aktion kann nicht rückgängig gemacht werden.")
-            sicher = st.checkbox("Ja, ich will dieses Spiel wirklich löschen.")
-            if st.button("Spiel endgültig löschen") and sicher:
-                try:
-                    db.collection("spiele").document(st.session_state.spielname).delete()
-                    st.success(f"Spiel '{st.session_state.spielname}' wurde gelöscht.")
-                    st.session_state.spielname = None
-                    st.rerun()
-                except Exception as e:
-                    st.error(f"Fehler beim Löschen: {e}")
+    with st.expander("⚠️ Spiel löschen", expanded=True):
+        st.warning(f"Willst du das Spiel **{spielname}** wirklich löschen? Diese Aktion kann nicht rückgängig gemacht werden.")
+
+        # Checkbox-Zustand im Session State speichern
+        st.checkbox("Ja, ich will dieses Spiel wirklich löschen.", key="loeschbestaetigung")
+
+        # Button prüft Session State
+        if st.button("Spiel endgültig löschen") and st.session_state.get("loeschbestaetigung"):
+            try:
+                db.collection("spiele").document(spielname).delete()
+                st.success(f"Spiel '{spielname}' wurde gelöscht.")
+                st.session_state.spielname = None
+                st.session_state.spiel_started = False
+                st.session_state.loeschbestaetigung = False  # zurücksetzen
+                st.rerun()
+            except Exception as e:
+                st.error(f"Fehler beim Löschen: {e}")
        
     if buttonLaden and spielname:
         st.session_state.spielname = spielname
