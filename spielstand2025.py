@@ -231,7 +231,7 @@ st.dataframe(df, use_container_width=True, hide_index=True)
 #Spielkommentare anzeigen
 st.subheader("💬 Spielkommentar")
 if kommentare:
-    st.markdown(kommentare[0])
+    st.markdown(kommentare[-1])
 else:
     st.info("Noch kein Kommentar verfügbar.")
 
