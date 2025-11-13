@@ -164,6 +164,16 @@ kommentare_bonus_gewinnt = [
     "⚡ **{name}** nutzt Rubber-Banding und rasiert die Runde mit +{gewinn:.1f} Punkten!",
     "👀 **{name}** kommt von hinten – mit Bonus +{gewinn:.1f} Punkte! Da staunt das Feld.",
     "🧨 **{name}** startet durch! Rubber-Banding at its best: +{gewinn:.1f} Punkte!",
+    "🚀 **{name}** zündet den Nachbrenner und holt +{gewinn:.1f} Punkte, das ist Comeback-Power!",
+"🎮 **{name}** spielt Reverse-Mode – von hinten nach vorn mit +{gewinn:.1f} Punkten!",
+"🦘 **{name}** springt aus dem Schatten und kassiert +{gewinn:.1f} Punkte, das nennt man Timing!",
+"🧃 **{name}** tankt Bonusenergie und liefert +{gewinn:.1f} Punkte ab, das war stark!",
+"🎢 **{name}** fährt Achterbahn – ganz unten gestartet, ganz oben gelandet mit +{gewinn:.1f} Punkten!",
+"🕹️ **{name}** aktiviert den Comeback-Code – +{gewinn:.1f} Punkte aus dem Nichts!",
+"🪂 **{name}** landet punktgenau – +{gewinn:.1f} Punkte aus der Tiefe des Feldes!",
+"🧬 **{name}** mutiert zum Rundensieger – +{gewinn:.1f} Punkte durch Bonus-Evolution!",
+"🎯 **{name}** trifft aus dem Off – +{gewinn:.1f} Punkte und alle schauen verdutzt!",
+"🦾 **{name}** zeigt Comeback-Qualitäten – +{gewinn:.1f} Punkte und plötzlich ganz vorn!",
 ]
 
 # Kommentare generieren
