@@ -49,23 +49,25 @@ if not st.session_state.spiel_started:
 
     # 🔒 Löschlogik mit Bestätigung
     if buttonLöschen and spielname:
-        st.session_state.loeschkandidat = spielname  # merken, welches Spiel gelöscht werden soll
+        st.session_state.loeschkandidat = spielname
 
-    if "loeschkandidat" in st.session_state:
-        with st.expander(f"⚠️ Spiel '{st.session_state.loeschkandidat}' wirklich löschen?", expanded=True):
-            st.warning("Diese Aktion kann nicht rückgängig gemacht werden.")
-            st.checkbox("Ja, ich will dieses Spiel wirklich löschen.", key="loeschbestaetigung")
+if "loeschkandidat" in st.session_state:
+    with st.expander(f"⚠️ Spiel '{st.session_state.loeschkandidat}' wirklich löschen?", expanded=True):
+        st.warning("Diese Aktion kann nicht rückgängig gemacht werden.")
+        st.checkbox("Ja, ich will dieses Spiel wirklich löschen.", key="loeschbestaetigung")
 
-            if st.button("Spiel endgültig löschen") and st.session_state.get("loeschbestaetigung"):
-                try:
-                    db.collection("spiele").document(st.session_state.loeschkandidat).delete()
-                    st.success(f"Spiel '{st.session_state.loeschkandidat}' wurde gelöscht.")
-                    st.session_state.spielname = None
-                    st.session_state.loeschbestaetigung = False
-                    del st.session_state["loeschkandidat"]
-                    st.rerun()
-                except Exception as e:
-                    st.error(f"Fehler beim Löschen: {e}")
+        if st.button("Spiel endgültig löschen") and st.session_state.get("loeschbestaetigung"):
+            try:
+                db.collection("spiele").document(st.session_state.loeschkandidat).delete()
+                st.success(f"Spiel '{st.session_state.loeschkandidat}' wurde gelöscht.")
+                st.session_state.spielname = None
+                st.session_state.spiel_started = False
+                if "loeschbestaetigung" in st.session_state:
+                    del st.session_state["loeschbestaetigung"]
+                del st.session_state["loeschkandidat"]
+                st.rerun()
+            except Exception as e:
+                st.error(f"Fehler beim Löschen: {e}")
        
     if buttonLaden and spielname:
         st.session_state.spielname = spielname
