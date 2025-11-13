@@ -132,6 +132,16 @@ kommentare_rundensieger = [
     "💥 **{name}** schnappt sich diese Runde mit +{gewinn:.1f} Punkten. Boom!",
     "🔥 **{name}** dominiert die Runde! +{gewinn:.1f} Punkte sind kein Zufall.",
     "🎯 **{name}** trifft ins Schwarze – +{gewinn:.1f} Punkte in einer Runde!",
+    "⚡ **{name}** zündet den Turbo und holt +{gewinn:.1f} Punkte, was für ein Move!",
+"🏹 **{name}** zielt perfekt – +{gewinn:.1f} Punkte gehen direkt aufs Konto!",
+"🚀 **{name}** hebt ab und landet +{gewinn:.1f} Punkte, das war galaktisch!",
+"🎉 **{name}** feiert den Rundensieg mit +{gewinn:.1f} Punkten, verdient und eindrucksvoll!",
+"🧨 **{name}** lässt es krachen – +{gewinn:.1f} Punkte in einem Durchgang!",
+"🏆 **{name}** holt sich den Pokal dieser Runde mit +{gewinn:.1f} Punkten, stark gespielt!",
+"🕶️ **{name}** bleibt cool und punktet +{gewinn:.1f}, ein echter Profi!",
+"🧠 **{name}** spielt clever und sichert sich +{gewinn:.1f} Punkte, Strategie zahlt sich aus!",
+"🎲 **{name}** würfelt das Glück auf seine Seite – +{gewinn:.1f} Punkte!",
+"🦾 **{name}** zeigt Stärke und holt +{gewinn:.1f} Punkte, eine Maschine auf dem Spielfeld!",
 ]
 
 kommentare_bonus = [
