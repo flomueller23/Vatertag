@@ -37,9 +37,12 @@ if not st.session_state.spiel_started:
     auswahl = st.selectbox("Spiel auswählen", optionen)
 
     if auswahl == "Neues Spiel erstellen":
-        spielname = st.text_input("Neuer Spielname")
+        st.session_state.spielname = st.text_input("Neuer Spielname")
     else:
-        spielname = auswahl
+        st.session_state.spielname = auswahl
+
+    else:
+        st.session_state.spielname = auswahl
 
     col1, col2 = st.columns([0.2, 0.2])
     with col1:
@@ -48,8 +51,8 @@ if not st.session_state.spiel_started:
         buttonLöschen = st.button("Spiel löschen")
 
     # 🔒 Löschlogik mit Bestätigung
-    if buttonLöschen and spielname:
-        st.session_state.loeschkandidat = spielname
+    if buttonLöschen and st.session_state.spielname:
+        st.session_state.loeschkandidat = st.session_state.spielname
 
 if "loeschkandidat" in st.session_state:
     with st.expander(f"⚠️ Spiel '{st.session_state.loeschkandidat}' wirklich löschen?", expanded=True):
@@ -69,11 +72,11 @@ if "loeschkandidat" in st.session_state:
             except Exception as e:
                 st.error(f"Fehler beim Löschen: {e}")
        
-    if buttonLaden and spielname:
-        st.session_state.spielname = spielname
+    if buttonLaden and st.session_state.spielname:
+        st.session_state.spielname = st.session_state.spielname
         if auswahl != "Neues Spiel erstellen":
             # Vorhandenes Spiel laden
-            spiel_doc = db.collection("spiele").document(spielname).get()
+            spiel_doc = db.collection("spiele").document(st.session_state.spielname).get()
             if spiel_doc.exists:
                 daten = spiel_doc.to_dict()
                 st.session_state.spieler = daten["spieler"]
