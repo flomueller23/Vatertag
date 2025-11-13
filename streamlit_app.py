@@ -46,10 +46,8 @@ if not st.session_state.spiel_started:
     col1, col2 = st.columns([0.2, 0.2])
     with col1:
         buttonLaden = st.button("Spiel laden / starten")
-    with col2:
-        buttonLöschen = st.button("Spiel löschen")
 
-    # ✅ Löschbereich nur hier anzeigen
+    # ✅ Nur hier erscheint der Löschbereich
     if buttonLöschen and spielname:
         with st.expander("⚠️ Spiel löschen", expanded=True):
             st.warning(f"Willst du das Spiel **{spielname}** wirklich löschen? Diese Aktion kann nicht rückgängig gemacht werden.")
