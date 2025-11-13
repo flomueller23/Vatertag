@@ -100,12 +100,32 @@ kommentare_fuehrend = [
     "🥇 **{name}** führt jetzt mit {punkte:.1f} Punkten. Niemand stoppt diesen Siegeszug!",
     "🚀 **{name}** stürmt an die Spitze! {punkte:.1f} Punkte und kein Ende in Sicht!",
     "👑 **{name}** thront über allen mit {punkte:.1f} Punkten. Ein König unter Spielern!",
+    "🏆 {name} setzt sich ab mit {punkte:.1f} Punkten, eine wahre Meisterleistung!",
+"🔥 **{name}** brennt ein Punktefeuerwerk ab – {punkte:.1f} Zähler auf dem Konto!",
+"🌪️ **{name}** wirbelt durch das Feld! {punkte:.1f} Punkte und kein Halten mehr!",
+"🧨 **{name}** sprengt alle Grenzen mit {punkte:.1f} Punkten, was für ein Lauf!",
+"🦁 **{name}** zeigt Löwenmut und dominiert mit {punkte:.1f} Punkten!",
+"🧠 **{name}** spielt in einer eigenen Liga – {punkte:.1f} Punkte sprechen Bände!",
+"🏹 **{name}** trifft ins Schwarze! {punkte:.1f} Punkte und die Führung ist sicher!",
+"🛡️ **{name}** verteidigt die Spitze mit {punkte:.1f} Punkten, unaufhaltsam!",
+"🎯 **{name}** punktet präzise und führt mit {punkte:.1f} Punkten, zielstrebig zum Sieg!",
+"🏇 **{name}** galoppiert dem Feld davon – {punkte:.1f} Punkte auf dem Konto!",
 ]
 
 kommentare_letzter = [
     "🐢 **{name}** hinkt mit {punkte:.1f} Punkten hinterher. Vielleicht war das ein geheimer Plan?",
     "🪨 **{name}** hält das Feld stabil von hinten – {punkte:.1f} Punkte und viel Luft nach oben.",
     "🌌 **{name}** ist auf Entdeckungsreise im unteren Punktesektor ({punkte:.1f}).",
+    "🕳️ **{name}** erkundet die Tiefen der Punktetabelle mit {punkte:.1f} Punkten, ganz ohne Eile.",
+"🐌 **{name}** nimmt das Rennen gelassen – {punkte:.1f} Punkte und jede Menge Potenzial!",
+"🧊 **{name}** bleibt cool am Tabellenende mit {punkte:.1f} Punkten, vielleicht kommt der große Sprung noch?",
+"🌱 **{name}** wächst langsam, aber stetig – {punkte:.1f} Punkte sind erst der Anfang.",
+"🪁 **{name}** schwebt am unteren Rand mit {punkte:.1f} Punkten, bereit für den Aufwind?",
+"🛸 **{name}** funkt aus der unteren Liga – {punkte:.1f} Punkte und eine Mission im Gange.",
+"🦥 **{name}** bewegt sich gemächlich mit {punkte:.1f} Punkten, aber unterschätze nie den Spätstarter!",
+"🧭 **{name}** sucht noch den Weg zum Punktetriumph – aktuell bei {punkte:.1f} Punkten.",
+"🎒 **{name}** sammelt Erfahrung am Tabellenende – {punkte:.1f} Punkte sind nur der Anfang.",
+"🪶 **{name}** landet sanft auf dem letzten Platz mit {punkte:.1f} Punkten, aber wer weiß, wie lange noch?",
 ]
 
 kommentare_rundensieger = [
