@@ -13,7 +13,7 @@ import altair as alt
 st_autorefresh(interval=15000, key="refresh_viewer")
 
 # 🔒 Fester Spielname – HIER ANPASSEN!
-FESTER_SPIELNAME = "Vatertagsspiele 2025"
+FESTER_SPIELNAME = "Wintervatertagsspiele2025"
 
 # Firestore initialisieren (einmalig)
 def get_firestore_client():
