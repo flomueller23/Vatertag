@@ -30,7 +30,6 @@ if "spielname" not in st.session_state:
 # SPIEL LADEN ODER STARTEN
 if not st.session_state.spiel_started:
     st.subheader("Spielname eingeben oder auswählen")
-    st.session_state.spielname = spielname
 
     spiele_docs = db.collection("spiele").stream()
     spielnamen = sorted([doc.id for doc in spiele_docs])
@@ -51,12 +50,12 @@ if not st.session_state.spiel_started:
     # ✅ Löschlogik nur hier
     if buttonLöschen and spielname:
         with st.expander("⚠️ Spiel löschen", expanded=True):
-            st.warning(f"Willst du das Spiel **{spielname}** wirklich löschen? Diese Aktion kann nicht rückgängig gemacht werden.")
+            st.warning(f"Willst du das Spiel **{st.session_state.spielname}** wirklich löschen? Diese Aktion kann nicht rückgängig gemacht werden.")
             sicher = st.checkbox("Ja, ich will dieses Spiel wirklich löschen.")
             if st.button("Spiel endgültig löschen") and sicher:
                 try:
-                    db.collection("spiele").document(spielname).delete()
-                    st.success(f"Spiel '{spielname}' wurde gelöscht.")
+                    db.collection("spiele").document(st.session_state.spielname).delete()
+                    st.success(f"Spiel '{st.session_state.spielname}' wurde gelöscht.")
                     st.session_state.spielname = None
                     st.rerun()
                 except Exception as e:
