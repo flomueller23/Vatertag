@@ -212,7 +212,37 @@ for j in range(len(rundendaten) - 1):
     db.collection("spiele").document(FESTER_SPIELNAME).update({
         "kommentare": kommentare
     })
+    
+# Kommentar für die letzte Runde (aktuellste)
+if rundendaten:
+    letzte_runde = rundendaten[-1]
+    kommentarblock = f"### 🕓 Runde {len(rundendaten)}: *{letzte_runde['runde']}* ({letzte_runde['zeit']})\n"
+    kommentarblock += "- " + random.choice(kommentare_fuehrend).format(
+        name=letzte_runde["fuehrender"], punkte=zwischenpunkte[letzte_runde["fuehrender"]]
+    ) + "\n"
+    kommentarblock += "- " + random.choice(kommentare_letzter).format(
+        name=letzte_runde["letzter"], punkte=zwischenpunkte[letzte_runde["letzter"]]
+    ) + "\n"
+    kommentarblock += "- " + random.choice(kommentare_rundensieger).format(
+        name=letzte_runde["rundensieger"][0], gewinn=letzte_runde["rundensieger"][1]
+    ) + "\n"
 
+    if letzte_runde["bonus"] == letzte_runde["rundensieger"][0]:
+        kommentarblock += "- " + random.choice(kommentare_bonus_gewinnt).format(
+            name=letzte_runde["bonus"], gewinn=letzte_runde["rundensieger"][1]
+        ) + "\n"
+    else:
+        kommentarblock += "- " + random.choice(kommentare_bonus).format(
+            name=letzte_runde["bonus"]
+        ) + "\n"
+
+    # Letzten Kommentar anhängen
+    kommentare.append(kommentarblock)
+
+    # Optional: auch speichern
+    db.collection("spiele").document(FESTER_SPIELNAME).update({
+        "kommentare": kommentare
+    })
 
 # Punktetabelle anzeigen
 st.subheader("📊 Aktueller Punktestand")
