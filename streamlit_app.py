@@ -70,7 +70,7 @@ if not st.session_state.spiel_started:
     
 if st.session_state.spielname:
     with st.expander("⚠️ Spiel löschen", expanded=False):
-        st.warning(f"Willst du das Spiel **{spielname}** wirklich löschen? Diese Aktion kann nicht rückgängig gemacht werden.")
+        st.warning(f"Willst du das Spiel **{st.session_state.spielname}** wirklich löschen? Diese Aktion kann nicht rückgängig gemacht werden.")
         sicher = st.checkbox("Ja, ich will dieses Spiel wirklich löschen.")
         if st.button("Spiel endgültig löschen") and sicher:
             try:
