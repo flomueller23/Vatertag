@@ -148,6 +148,16 @@ kommentare_bonus = [
     "🧲 **{name}** bekommt den Bonus – Letzter sein zahlt sich wohl doch aus!",
     "🔁 **{name}** nutzt Rubber-Banding – vielleicht klappt's ja nächstes Mal richtig!",
     "🎁 Bonuszeit für **{name}**! Manchmal ist Verlieren einfach lohnenswert.",
+    "🪄 **{name}** zaubert sich den Bonus herbei – Extra-Punkte für Durchhaltevermögen!",
+"🧃 **{name}** bekommt einen Energieschub – Bonuspunkte für den Comeback-Versuch!",
+"🛠️ **{name}** rüstet nach mit Bonuspunkten – vielleicht klappt’s im nächsten Anlauf?",
+"🎈 **{name}** wird belohnt fürs Durchhalten – Bonuspunkte fliegen ein,",
+"🧸 **{name}** bekommt Trostpunkte – Bonus für den Mut, weiterzuspielen.",
+"🔋 **{name}** lädt sich neu auf – Bonuspunkte für frischen Schwung!",
+"🌀 **{name}** dreht das Momentum – Bonuspunkte könnten alles ändern.",
+"📦 **{name}** packt den Bonus aus – ein Geschenk für den Underdog.",
+"🧬 **{name}** bekommt evolutionäre Unterstützung – Bonuspunkte für den nächsten Schritt.",
+"🕹️ **{name}** aktiviert den Bonus-Modus – vielleicht ist das der Gamechanger!",
 ]
 
 kommentare_bonus_gewinnt = [
