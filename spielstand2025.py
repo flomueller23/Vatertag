@@ -220,8 +220,8 @@ if neue_kommentare:
         "kommentare": kommentare
     })
     
-# Kommentar für die letzte Runde (aktuellste)
-if rundendaten:
+# Kommentar für die letzte Runde (nur wenn noch nicht vorhanden)
+if rundendaten and len(kommentare) < len(rundendaten):
     letzte_runde = rundendaten[-1]
     kommentarblock = f"### 🕓 Runde {len(rundendaten)}: *{letzte_runde['runde']}* ({letzte_runde['zeit']})\n"
     kommentarblock += "- " + random.choice(kommentare_fuehrend).format(
@@ -243,10 +243,7 @@ if rundendaten:
             name=letzte_runde["bonus"]
         ) + "\n"
 
-    # Letzten Kommentar anhängen
     kommentare.append(kommentarblock)
-
-    # Optional: auch speichern
     db.collection("spiele").document(FESTER_SPIELNAME).update({
         "kommentare": kommentare
     })
