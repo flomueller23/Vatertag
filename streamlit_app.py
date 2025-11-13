@@ -21,6 +21,7 @@ db = get_firestore_client()
 # Spiel laden oder neues starten
 st.set_page_config(page_title="Vatertagsspiele", layout="wide")
 st.title("Vatertagsspiele")
+st.session_state.spielname = spielname
 
 if "spiel_started" not in st.session_state:
     st.session_state.spiel_started = False
