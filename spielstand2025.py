@@ -229,20 +229,15 @@ for j, rd in enumerate(rundendaten):
         "text": kommentarblock
     })
 
-# Speichern der Kommentare in Firebase
-from firebase_admin import firestore
+# Nur den letzten Kommentar speichern
+letzter_kommentar = {
+    "runde_index": len(rundendaten) - 1,
+    "runde_name": rundendaten[-1]["runde"],
+    "text": kommentarblock
+}
 
-# Bestehende Kommentare übernehmen
-aktualisierte_kommentare = kommentare.copy()
-
-# Neue Kommentare einfügen, aber alte mit gleichem runde_index ersetzen
-for neu in neue_kommentare:
-    aktualisierte_kommentare = [k for k in aktualisierte_kommentare if k["runde_index"] != neu["runde_index"]]
-    aktualisierte_kommentare.append(neu)
-
-# Jetzt vollständig speichern
 db.collection("spiele").document(FESTER_SPIELNAME).update({
-    "kommentare": aktualisierte_kommentare
+    "kommentare": [letzter_kommentar]
 })
 
 # Punktetabelle anzeigen
