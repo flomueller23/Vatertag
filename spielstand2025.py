@@ -200,8 +200,8 @@ for i, k in enumerate(kommentare_roh):
 neue_kommentare = []
 
 for j, rd in enumerate(rundendaten):
-    if j in bereits_kommentierte_runden:
-        continue  # Kommentar existiert bereits
+#    if j in bereits_kommentierte_runden:
+#        continue  # Kommentar existiert bereits
 
     kommentarblock = f"### 🕓 Runde {j+1}: *{rd['runde']}* ({rd['zeit']})\n"
     kommentarblock += "- " + random.choice(kommentare_fuehrend).format(
