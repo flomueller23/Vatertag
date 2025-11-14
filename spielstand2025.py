@@ -184,6 +184,7 @@ bonus_empfaenger = letzter_spieler
 
 kommentare_roh = daten.get("kommentare", [])
 kommentare = []
+neue_kommentare = []
 bereits_kommentierte_runden = {k["runde_index"] for k in kommentare}
 
 for j, rd in enumerate(rundendaten):
@@ -216,8 +217,6 @@ for j, rd in enumerate(rundendaten):
         "runde_name": rd["runde"],
         "text": kommentarblock
     })
-
-neue_kommentare = []
 
 for j, rd in enumerate(rundendaten):
 #    if j in bereits_kommentierte_runden:
