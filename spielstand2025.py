@@ -297,9 +297,14 @@ max_punkte_spieler = max_row["Spieler"]
 max_punkte_runde = max_row["Runde"]
 
 # 3. Häufigster Rubber-Banding-Spieler (Bonus-Empfänger)
-bonus_counter = pd.Series(bonus_empfaenger_pro_runde[1:])  # Erste Runde ausschließen
-haeufigster_bonus_spieler = bonus_counter.value_counts().idxmax()
-bonus_anzahl = bonus_counter.value_counts().max()
+bonus_daten = bonus_empfaenger_pro_runde[1:]  # Erste Runde ausschließen
+if bonus_daten:
+    bonus_counter = pd.Series(bonus_daten)
+    haeufigster_bonus_spieler = bonus_counter.value_counts().idxmax()
+    bonus_anzahl = bonus_counter.value_counts().max()
+else:
+    haeufigster_bonus_spieler = "–"
+    bonus_anzahl = 0
 
 # 4. Risiko-Freudigster Spieler – Höchster durchschnittlicher Einsatz
 einsatz_durchschnitt = {
