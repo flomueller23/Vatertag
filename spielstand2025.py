@@ -234,12 +234,10 @@ for j, rd in enumerate(rundendaten):
     })
 
 # Nur speichern, wenn es neue Kommentare gibt
-from firebase_admin import firestore
-
-# Nur speichern, wenn es neue Kommentare gibt
 if neue_kommentare:
+    kommentare.extend(neue_kommentare)
     db.collection("spiele").document(FESTER_SPIELNAME).update({
-        "kommentare": firestore.ArrayUnion(neue_kommentare)
+        "kommentare": kommentare
     })
 
 # Punktetabelle anzeigen
