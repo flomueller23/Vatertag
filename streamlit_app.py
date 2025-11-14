@@ -116,7 +116,28 @@ if st.session_state.spiel_started and not st.session_state.spieler:
         })
         st.success("Spiel gespeichert.")
         st.rerun()
+        
+# Spielstand
+    st.header("Spielstand")
+    daten = []
+    # Spieler mit Bonus pro Runde ermitteln
+    bonus_empfaenger_pro_runde = []
+    punkte_zwischen_runden = [ {sp["name"]: 20.0} for sp in st.session_state.spieler ]  # Startpunkte
 
+    zwischenpunkte = {sp["name"]: 20.0 for sp in st.session_state.spieler}
+    for runde_idx, runde in enumerate(st.session_state.runden):
+        if runde_idx == 0:
+            # In der ersten Runde kein Bonus
+            bonus_empfaenger_pro_runde.append(None)
+        else:
+            min_punkte = min(zwischenpunkte.values())
+            letzte_spieler = [name for name, punkte in zwischenpunkte.items() if punkte == min_punkte]
+            bonus_empfaenger_pro_runde.append(letzte_spieler)
+
+        # Punktestand für nächste Runde aktualisieren
+        for sp in st.session_state.spieler:
+            zwischenpunkte[sp["name"]] += sp["gewinne"][runde_idx]
+            
 # RUNDENVERWALTUNG
 if st.session_state.spiel_started and st.session_state.spieler:
     
