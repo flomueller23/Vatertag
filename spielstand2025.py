@@ -182,8 +182,23 @@ aktueller_letzter = min(zwischenpunkte, key=zwischenpunkte.get)
 rundensieger = max(gewinne_der_runde, key=lambda x: x[1])
 bonus_empfaenger = letzter_spieler
 
-kommentare_roh = daten.get("kommentare", [])
-kommentare = []
+# Kommentar zur aktuellen Runde generieren
+kommentar_runde = ""
+
+# 1. Rundensieger-Kommentar
+if rundensieger[0] == bonus_empfaenger:
+    kommentar_runde += random.choice(kommentare_bonus_gewinnt).format(name=rundensieger[0], gewinn=rundensieger[1]) + " "
+else:
+    kommentar_runde += random.choice(kommentare_rundensieger).format(name=rundensieger[0], gewinn=rundensieger[1]) + " "
+
+# 2. Führender-Kommentar
+kommentar_runde += random.choice(kommentare_fuehrend).format(name=aktueller_fuehrender, punkte=zwischenpunkte[aktueller_fuehrender]) + " "
+
+# 3. Letzter-Kommentar
+kommentar_runde += random.choice(kommentare_letzter).format(name=aktueller_letzter, punkte=zwischenpunkte[aktueller_letzter]) + " "
+
+# 4. Bonus-Kommentar
+kommentar_runde += random.choice(kommentare_bonus).format(name=bonus_empfaenger)
 
 # Punktetabelle anzeigen
 st.subheader("📊 Aktueller Punktestand")
