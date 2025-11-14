@@ -184,6 +184,7 @@ bonus_empfaenger = letzter_spieler
 
 kommentare_roh = daten.get("kommentare", [])
 kommentare = []
+
 for i, k in enumerate(kommentare_roh):
     if isinstance(k, dict) and "text" in k and "runde_index" in k:
         kommentare.append(k)
