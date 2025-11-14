@@ -187,9 +187,11 @@ kommentare = []
 neue_kommentare = []
 bereits_kommentierte_runden = {k["runde_index"] for k in kommentare}
 
+neue_kommentare = []
+
 for j, rd in enumerate(rundendaten):
     if j in bereits_kommentierte_runden:
-        continue  # Kommentar existiert bereits, überspringen
+        continue  # Kommentar existiert bereits → überspringen
 
     # Kommentarblock generieren
     kommentarblock = f"### 🕓 Runde {j+1}: *{rd['runde']}* ({rd['zeit']})\n"
@@ -225,8 +227,6 @@ if neue_kommentare:
     db.collection("spiele").document(FESTER_SPIELNAME).update({
         "kommentare": firestore.ArrayUnion(neue_kommentare)
     })
-
-
 
 # Punktetabelle anzeigen
 st.subheader("📊 Aktueller Punktestand")
