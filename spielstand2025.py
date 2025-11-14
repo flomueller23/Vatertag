@@ -301,13 +301,6 @@ bonus_counter = pd.Series(bonus_empfaenger_pro_runde)
 haeufigster_bonus_spieler = bonus_counter.value_counts().idxmax()
 bonus_anzahl = bonus_counter.value_counts().max()
 
-for runden_index, runde in enumerate(rundendaten):
-    name, gewinn = runde["rundensieger"]
-    if gewinn > max_gewinn:
-        max_gewinn = gewinn
-        gewinner = name
-        rundenname = f"{runden_index + 1}: {runde['runde']}"
-
 # Darstellung in vier Spalten
 col1, col2, col3, col4 = st.columns(4)
 
