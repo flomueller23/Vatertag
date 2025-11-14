@@ -350,7 +350,7 @@ spannungsindex = pd.Series(punkte_liste).std()
 
 
 # Darstellung in vier Spalten
-col1, col2, col3, col4, col5, col5, col7, col8 = st.columns(8)
+col1, col2, col3, col4 = st.columns(4)
 
 with col1:
     st.metric("🏆 Häufigster Rundensieger", f"{haeufigster_rundensieger}", f"{rundensieger_anzahl}×")
@@ -365,6 +365,8 @@ col5, col6, col7, col8, col9 = st.columns(5)
 
 with col4:
     st.metric("🎲 Risikofreudigster Spieler", risikofreudigster_spieler, f"{max_durchschnitt_einsatz:.1f} Ø Einsatz")
+
+col5, col5, col7, col8 = st.columns(4)
 
 with col5:
     st.metric("📈 Effektivster Spieler", effektivster_spieler, f"{effizienz_wert:.2f} Gewinn/Einsatz")
