@@ -237,7 +237,8 @@ st.dataframe(df, use_container_width=True, hide_index=True)
 # Aktuellen Kommentar anzeigen
 st.subheader("💬 Spielkommentar")
 if kommentare:
-    st.markdown(kommentare[-1]["text"])
+    for zeile in kommentare[-1]["text"].split("\n"):
+        st.markdown(zeile.strip())
 else:
     st.info("Noch kein Kommentar verfügbar.")
 
