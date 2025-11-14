@@ -176,40 +176,49 @@ kommentare_bonus_gewinnt = [
 "🦾 **{name}** zeigt Comeback-Qualitäten – +{gewinn:.1f} Punkte und plötzlich ganz vorn!",
 ]
 
+# Letzten gespeicherten Kommentar abrufen
+letzter_kommentar = kommentare[-1] if kommentare else None
+letzte_kommentierte_runde = letzter_kommentar["runde"] if letzter_kommentar else None
+
 # Kommentare generieren
 aktueller_fuehrender = max(zwischenpunkte, key=zwischenpunkte.get)
 aktueller_letzter = min(zwischenpunkte, key=zwischenpunkte.get)
 rundensieger = max(gewinne_der_runde, key=lambda x: x[1])
 bonus_empfaenger = letzter_spieler
 
-# Kommentar zur aktuellen Runde generieren
-kommentar_runde = ""
+# Nur neuen Kommentar erzeugen, wenn sich die Runde verändert hat
+aktuelle_runde = runden[-1]["name"]
 
-# 1. Rundensieger-Kommentar
-if rundensieger[0] == bonus_empfaenger:
-    kommentar_runde += random.choice(kommentare_bonus_gewinnt).format(name=rundensieger[0], gewinn=rundensieger[1]) + " "
-else:
-    kommentar_runde += random.choice(kommentare_rundensieger).format(name=rundensieger[0], gewinn=rundensieger[1]) + " "
+if aktuelle_runde != letzte_kommentierte_runde:
+    # Kommentar zur aktuellen Runde generieren
+    kommentar_runde = ""
 
-# 2. Führender-Kommentar
-kommentar_runde += random.choice(kommentare_fuehrend).format(name=aktueller_fuehrender, punkte=zwischenpunkte[aktueller_fuehrender]) + " "
+    if rundensieger[0] == bonus_empfaenger:
+        kommentar_runde += random.choice(kommentare_bonus_gewinnt).format(name=rundensieger[0], gewinn=rundensieger[1]) + "\n"
+    else:
+        kommentar_runde += random.choice(kommentare_rundensieger).format(name=rundensieger[0], gewinn=rundensieger[1]) + "\n"
 
-# 3. Letzter-Kommentar
-kommentar_runde += random.choice(kommentare_letzter).format(name=aktueller_letzter, punkte=zwischenpunkte[aktueller_letzter]) + " "
+    kommentar_runde += random.choice(kommentare_fuehrend).format(name=aktueller_fuehrender, punkte=zwischenpunkte[aktueller_fuehrender]) + "\n"
+    kommentar_runde += random.choice(kommentare_letzter).format(name=aktueller_letzter, punkte=zwischenpunkte[aktueller_letzter]) + "\n"
+    kommentar_runde += random.choice(kommentare_bonus).format(name=bonus_empfaenger)
 
-# 4. Bonus-Kommentar
-kommentar_runde += random.choice(kommentare_bonus).format(name=bonus_empfaenger)
+    # Kommentar aktualisieren (ersetzen statt anhängen)
+    if letzter_kommentar:
+        kommentare[-1] = {
+            "runde": aktuelle_runde,
+            "zeit": datetime.now(ZoneInfo("Europe/Berlin")).strftime("%Y-%m-%d %H:%M:%S"),
+            "text": kommentar_runde
+        }
+    else:
+        kommentare.append({
+            "runde": aktuelle_runde,
+            "zeit": datetime.now(ZoneInfo("Europe/Berlin")).strftime("%Y-%m-%d %H:%M:%S"),
+            "text": kommentar_runde
+        })
 
-# Kommentar zur aktuellen Runde anhängen
-kommentare.append({
-    "runde": runden[-1]["name"],
-    "zeit": datetime.now(ZoneInfo("Europe/Berlin")).strftime("%Y-%m-%d %H:%M:%S"),
-    "text": kommentar_runde
-})
-
-# Kommentar auch in Firestore speichern
-spiel_ref = db.collection("spiele").document(FESTER_SPIELNAME)
-spiel_ref.update({"kommentare": kommentare})
+    # Kommentar in Firestore speichern
+    spiel_ref = db.collection("spiele").document(FESTER_SPIELNAME)
+    spiel_ref.update({"kommentare": kommentare})
 
 # Punktetabelle anzeigen
 st.subheader("📊 Aktueller Punktestand")
