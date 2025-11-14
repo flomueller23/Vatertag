@@ -336,8 +336,8 @@ konstanter_gewinn = gewinn_durchschnitt[konstantester_spieler]
 
 # 7. Bonus-Effizienz – Wer nutzt den Bonus am besten?
 bonus_sieger = {}
-for r in rundendaten:
-    if r["bonus"] == r["rundensieger"][1]:
+for r in rundendaten[1:]:  # Erste Runde ausschließen
+    if r["bonus"] == r["rundensieger"][0]:
         name = r["bonus"]
         bonus_sieger[name] = bonus_sieger.get(name, 0) + 1
 
@@ -347,7 +347,6 @@ if bonus_sieger:
 else:
     bester_bonusnutzer = "–"
     bester_bonusnutzer_anzahl = 0
-
 
 # 8. Spannungsindex – Standardabweichung der aktuellen Punktestände
 punkte_liste = [sp["punkte"] for sp in spieler]
