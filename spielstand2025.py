@@ -185,59 +185,57 @@ bonus_empfaenger = letzter_spieler
 kommentare_roh = daten.get("kommentare", [])
 kommentare = []
 
-for i, k in enumerate(kommentare_roh):
-    if isinstance(k, dict) and "text" in k and "runde_index" in k:
-        kommentare.append(k)
-    elif isinstance(k, str):
-        kommentare.append({
-            "runde_index": i,
-            "runde_name": f"Runde {i+1}",
-            "text": k
-        })
-
-bereits_kommentierte_runden = {k["runde_index"] for k in kommentare}
-neue_kommentare = []
-
-for j, rd in enumerate(rundendaten):
-    if j in bereits_kommentierte_runden:
-        continue  # Kommentar existiert bereits → überspringen
-
-    # Kommentarblock generieren
-    kommentarblock = f"### 🕓 Runde {j+1}: *{rd['runde']}* ({rd['zeit']})\n"
-    kommentarblock += "- " + random.choice(kommentare_fuehrend).format(
-        name=rd["fuehrender"], punkte=zwischenpunkte[rd["fuehrender"]]
-    ) + "\n"
-    kommentarblock += "- " + random.choice(kommentare_letzter).format(
-        name=rd["letzter"], punkte=zwischenpunkte[rd["letzter"]]
-    ) + "\n"
-    kommentarblock += "- " + random.choice(kommentare_rundensieger).format(
-        name=rd["rundensieger"][0], gewinn=rd["rundensieger"][1]
-    ) + "\n"
-
-    if rd["bonus"] == rd["rundensieger"][0]:
-        kommentarblock += "- " + random.choice(kommentare_bonus_gewinnt).format(
-            name=rd["bonus"], gewinn=rd["rundensieger"][1]
-        ) + "\n"
-    else:
-        kommentarblock += "- " + random.choice(kommentare_bonus).format(
-            name=rd["bonus"]
-        ) + "\n"
-
-    neue_kommentare.append({
-        "runde_index": j,
+if rundendaten:
+    letzte_runde_index = len(rundendaten) - 1
+    rd = rundendaten[letzte_runde_index]
+    
+    # Kommentarblock erzeugen …
+    
+    letzter_kommentar = {
+        "runde_index": letzte_runde_index,
         "runde_name": rd["runde"],
         "text": kommentarblock
+    }
+
+    db.collection("spiele").document(FESTER_SPIELNAME).update({
+        "kommentare": [letzter_kommentar]
     })
 
-# Nur den letzten Kommentar speichern
+    kommentare = [letzter_kommentar]
+
+# Nur den Kommentar zur letzten Runde erzeugen
+letzte_runde_index = len(rundendaten) - 1
+rd = rundendaten[letzte_runde_index]
+
+kommentarblock = f"### 🕓 Runde {letzte_runde_index + 1}: *{rd['runde']}* ({rd['zeit']})\n"
+kommentarblock += "- " + random.choice(kommentare_fuehrend).format(
+    name=rd["fuehrender"], punkte=zwischenpunkte[rd["fuehrender"]]
+) + "\n"
+kommentarblock += "- " + random.choice(kommentare_letzter).format(
+    name=rd["letzter"], punkte=zwischenpunkte[rd["letzter"]]
+) + "\n"
+kommentarblock += "- " + random.choice(kommentare_rundensieger).format(
+    name=rd["rundensieger"][0], gewinn=rd["rundensieger"][1]
+) + "\n"
+
+if rd["bonus"] == rd["rundensieger"][0]:
+    kommentarblock += "- " + random.choice(kommentare_bonus_gewinnt).format(
+        name=rd["bonus"], gewinn=rd["rundensieger"][1]
+    ) + "\n"
+else:
+    kommentarblock += "- " + random.choice(kommentare_bonus).format(
+        name=rd["bonus"]
+    ) + "\n"
+
+# Jetzt speichern
 letzter_kommentar = {
-    "runde_index": len(rundendaten) - 1,
-    "runde_name": rundendaten[-1]["runde"],
+    "runde_index": letzte_runde_index,
+    "runde_name": rd["runde"],
     "text": kommentarblock
 }
 
 db.collection("spiele").document(FESTER_SPIELNAME).update({
-    "kommentare": [letzter_kommentar]
+    kommentare = [letzter_kommentar]
 })
 
 # Punktetabelle anzeigen
