@@ -297,7 +297,7 @@ max_punkte_spieler = max_row["Spieler"]
 max_punkte_runde = max_row["Runde"]
 
 # 3. Häufigster Rubber-Banding-Spieler (Bonus-Empfänger)
-bonus_counter = pd.Series(bonus_empfaenger_pro_runde)
+bonus_counter = pd.Series(bonus_empfaenger_pro_runde[1:])  # Erste Runde ausschließen
 haeufigster_bonus_spieler = bonus_counter.value_counts().idxmax()
 bonus_anzahl = bonus_counter.value_counts().max()
 
@@ -332,7 +332,7 @@ konstanter_gewinn = gewinn_durchschnitt[konstantester_spieler]
 # 7. Bonus-Effizienz – Wer nutzt den Bonus am besten?
 bonus_sieger = {}
 for r in rundendaten:
-    if r["bonus"] == r["rundensieger"][0]:
+    if r["bonus"] == r["rundensieger"][1]:
         name = r["bonus"]
         bonus_sieger[name] = bonus_sieger.get(name, 0) + 1
 
