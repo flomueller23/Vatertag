@@ -246,7 +246,7 @@ for neu in neue_kommentare:
 db.collection("spiele").document(FESTER_SPIELNAME).update({
     "kommentare": aktualisierte_kommentare
 })
-
+)}
 # Punktetabelle anzeigen
 st.subheader("📊 Aktueller Punktestand")
 tabelle = []
