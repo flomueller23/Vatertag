@@ -193,9 +193,6 @@ for i, k in enumerate(kommentare_roh):
             "runde_name": f"Runde {i+1}",
             "text": k
         })
-
-db.collection("spiele").document(FESTER_SPIELNAME).update({
-    "kommentare": kommentare
 })
 
 # Runde-Indexe extrahieren
@@ -234,11 +231,13 @@ for j, rd in enumerate(rundendaten):
     })
 
 # Nur speichern, wenn es neue Kommentare gibt
+from firebase_admin import firestore
+
 if neue_kommentare:
-    kommentare.extend(neue_kommentare)
     db.collection("spiele").document(FESTER_SPIELNAME).update({
-        "kommentare": kommentare
+        "kommentare": firestore.ArrayUnion(neue_kommentare)
     })
+
 
 # Punktetabelle anzeigen
 st.subheader("📊 Aktueller Punktestand")
