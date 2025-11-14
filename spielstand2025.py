@@ -200,6 +200,13 @@ kommentar_runde += random.choice(kommentare_letzter).format(name=aktueller_letzt
 # 4. Bonus-Kommentar
 kommentar_runde += random.choice(kommentare_bonus).format(name=bonus_empfaenger)
 
+# Kommentar zur aktuellen Runde anhängen
+kommentare.append({
+    "runde": runden[-1]["name"],
+    "zeit": datetime.now(ZoneInfo("Europe/Berlin")).strftime("%Y-%m-%d %H:%M:%S"),
+    "text": kommentar_runde
+})
+
 # Kommentar auch in Firestore speichern
 spiel_ref = db.collection("spiele").document(FESTER_SPIELNAME)
 spiel_ref.update({"kommentare": kommentare})
