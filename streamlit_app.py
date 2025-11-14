@@ -116,7 +116,11 @@ if st.session_state.spiel_started and not st.session_state.spieler:
         })
         st.success("Spiel gespeichert.")
         st.rerun()
-
+        
+# Spielstand
+    st.header("Spielstand")
+    daten = []
+    
 # RUNDENVERWALTUNG
 if st.session_state.spiel_started and st.session_state.spieler:
     
@@ -200,9 +204,6 @@ if st.session_state.spiel_started and st.session_state.spieler:
     for sp in st.session_state.spieler:
         sp["punkte"] = 20.0 + sum(sp["gewinne"])
 
-    # Spielstand
-    st.header("Spielstand")
-    daten = []
     # Spieler mit Bonus pro Runde ermitteln
     bonus_empfaenger_pro_runde = []
     punkte_zwischen_runden = [ {sp["name"]: 20.0} for sp in st.session_state.spieler ]  # Startpunkte
