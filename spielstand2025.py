@@ -182,9 +182,22 @@ aktueller_letzter = min(zwischenpunkte, key=zwischenpunkte.get)
 rundensieger = max(gewinne_der_runde, key=lambda x: x[1])
 bonus_empfaenger = letzter_spieler
 
-# Kommentare als Objekte mit Rundenindex speichern
+# Kommentare robust laden – alte Strings in neue Struktur umwandeln
 kommentare_roh = daten.get("kommentare", [])
-kommentare = kommentare_roh if isinstance(kommentare_roh, list) else []
+kommentare = []
+for i, k in enumerate(kommentare_roh):
+    if isinstance(k, dict) and "text" in k and "runde_index" in k:
+        kommentare.append(k)
+    elif isinstance(k, str):
+        kommentare.append({
+            "runde_index": i,
+            "runde_name": f"Runde {i+1}",
+            "text": k
+        })
+
+db.collection("spiele").document(FESTER_SPIELNAME).update({
+    "kommentare": kommentare
+})
 
 # Runde-Indexe extrahieren
 bereits_kommentierte_runden = {k["runde_index"] for k in kommentare if "runde_index" in k}
