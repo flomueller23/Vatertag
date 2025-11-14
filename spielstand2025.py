@@ -301,8 +301,47 @@ bonus_counter = pd.Series(bonus_empfaenger_pro_runde)
 haeufigster_bonus_spieler = bonus_counter.value_counts().idxmax()
 bonus_anzahl = bonus_counter.value_counts().max()
 
+# 4. Risiko-Freudigster Spieler – Höchster durchschnittlicher Einsatz
+einsatz_durchschnitt = {
+    sp["name"]: sum(sp["einsaetze"]) / len(sp["einsaetze"]) if sp["einsaetze"] else 0
+    for sp in spieler
+}
+risikofreudigster_spieler = max(einsatz_durchschnitt, key=einsatz_durchschnitt.get)
+max_durchschnitt_einsatz = einsatz_durchschnitt[risikofreudigster_spieler]
+
+# 5. Effektivster Spieler – Gewinn/Einsatz-Verhältnis
+effizienz = {}
+for sp in spieler:
+    gesamt_einsatz = sum(sp["einsaetze"])
+    gesamt_gewinn = sum(sp["gewinne"])
+    if gesamt_einsatz > 0:
+        effizienz[sp["name"]] = gesamt_gewinn / gesamt_einsatz
+    else:
+        effizienz[sp["name"]] = 0
+effektivster_spieler = max(effizienz, key=effizienz.get)
+effizienz_wert = effizienz[effektivster_spieler]
+
+# 6. Durchschnittlicher Rundengewinn – Wer punktet konstant?
+gewinn_durchschnitt = {
+    sp["name"]: sum(sp["gewinne"]) / len(sp["gewinne"]) if sp["gewinne"] else 0
+    for sp in spieler
+}
+konstantester_spieler = max(gewinn_durchschnitt, key=gewinn_durchschnitt.get)
+konstanter_gewinn = gewinn_durchschnitt[konstantester_spieler]
+
+# 7. Bonus-Effizienz – Wie oft hat ein Bonus-Empfänger die Runde gewonnen?
+bonus_gewinnt = sum(
+    1 for r in rundendaten if r["bonus"] == r["rundensieger"][0]
+)
+bonus_effizienz = bonus_gewinnt / len(rundendaten) * 100 if rundendaten else 0
+
+# 8. Spannungsindex – Standardabweichung der aktuellen Punktestände
+punkte_liste = [sp["punkte"] for sp in spieler]
+spannungsindex = pd.Series(punkte_liste).std()
+
+
 # Darstellung in vier Spalten
-col1, col2, col3, col4 = st.columns(4)
+col1, col2, col3, col4, col5, col5, col7, col8 = st.columns(8)
 
 with col1:
     st.metric("🏆 Häufigster Rundensieger", f"{haeufigster_rundensieger}", f"{rundensieger_anzahl}×")
@@ -312,7 +351,23 @@ with col2:
 
 with col3:
     st.metric("🎁 Häufigster Rubber-Banding-Nutzer", f"{haeufigster_bonus_spieler}", f"{bonus_anzahl}×")
-    
+
+col5, col6, col7, col8, col9 = st.columns(5)
+
+with col4:
+    st.metric("🎲 Risikofreudigster Spieler", risikofreudigster_spieler, f"{max_durchschnitt_einsatz:.1f} Ø Einsatz")
+
+with col5:
+    st.metric("📈 Effektivster Spieler", effektivster_spieler, f"{effizienz_wert:.2f} Gewinn/Einsatz")
+
+with col6:
+    st.metric("🔁 Konstanter Punktesammler", konstanter_gewinn, f"{konstanter_gewinn:.1f} Ø Rundengewinn")
+
+with col7:
+    st.metric("🎯 Bonus-Effizienz", f"{bonus_effizienz:.1f}%", f"{bonus_gewinnt}× Bonus führte zum Sieg")
+
+with col8:
+    st.metric("📊 Spannungsindex", "±{:.2f}".format(spannungsindex), "Punkte-Streuung")
 
 #st.subheader("💬 Spielkommentare")
 #for kommentar in kommentare[:-1]:  # alle außer dem letzten
