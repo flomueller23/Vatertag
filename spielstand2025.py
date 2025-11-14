@@ -319,8 +319,6 @@ with col2:
 
 with col3:
     st.metric("🎁 Häufigster Rubber-Banding-Nutzer", f"{haeufigster_bonus_spieler}", f"{bonus_anzahl}×")
-
-with col4:
     
 
 #st.subheader("💬 Spielkommentare")
