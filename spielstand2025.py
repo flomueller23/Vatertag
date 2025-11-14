@@ -185,59 +185,6 @@ bonus_empfaenger = letzter_spieler
 kommentare_roh = daten.get("kommentare", [])
 kommentare = []
 
-if rundendaten:
-    letzte_runde_index = len(rundendaten) - 1
-    rd = rundendaten[letzte_runde_index]
-    
-    # Kommentarblock erzeugen …
-    
-    letzter_kommentar = {
-        "runde_index": letzte_runde_index,
-        "runde_name": rd["runde"],
-        "text": kommentarblock
-    }
-
-    db.collection("spiele").document(FESTER_SPIELNAME).update({
-        "kommentare": [letzter_kommentar]
-    })
-
-    kommentare = [letzter_kommentar]
-
-# Nur den Kommentar zur letzten Runde erzeugen
-letzte_runde_index = len(rundendaten) - 1
-rd = rundendaten[letzte_runde_index]
-
-kommentarblock = f"### 🕓 Runde {letzte_runde_index + 1}: *{rd['runde']}* ({rd['zeit']})\n"
-kommentarblock += "- " + random.choice(kommentare_fuehrend).format(
-    name=rd["fuehrender"], punkte=zwischenpunkte[rd["fuehrender"]]
-) + "\n"
-kommentarblock += "- " + random.choice(kommentare_letzter).format(
-    name=rd["letzter"], punkte=zwischenpunkte[rd["letzter"]]
-) + "\n"
-kommentarblock += "- " + random.choice(kommentare_rundensieger).format(
-    name=rd["rundensieger"][0], gewinn=rd["rundensieger"][1]
-) + "\n"
-
-if rd["bonus"] == rd["rundensieger"][0]:
-    kommentarblock += "- " + random.choice(kommentare_bonus_gewinnt).format(
-        name=rd["bonus"], gewinn=rd["rundensieger"][1]
-    ) + "\n"
-else:
-    kommentarblock += "- " + random.choice(kommentare_bonus).format(
-        name=rd["bonus"]
-    ) + "\n"
-
-# Jetzt speichern
-letzter_kommentar = {
-    "runde_index": letzte_runde_index,
-    "runde_name": rd["runde"],
-    "text": kommentarblock
-}
-
-db.collection("spiele").document(FESTER_SPIELNAME).update({
-    kommentare = [letzter_kommentar]
-})
-
 # Punktetabelle anzeigen
 st.subheader("📊 Aktueller Punktestand")
 tabelle = []
@@ -383,10 +330,3 @@ with col7:
 with col8:
     st.metric("📊 Spannungsindex", "±{:.2f}".format(spannungsindex), "Punkte-Streuung")
 
-#st.subheader("💬 Spielkommentare")
-#for kommentar in kommentare[:-1]:  # alle außer dem letzten
-#    with st.expander(kommentar["text"].split("\n")[0]):
-#        st.markdown("\n".join(kommentar["text"].split("\n")[1:]))
-
-#aktuelle_runde_index = len(runden) - 1  # Index der letzten Runde (0-basiert)
-#aktuelle_runde_name = f"{len(runden)}: {runden[-1]['name']}"
