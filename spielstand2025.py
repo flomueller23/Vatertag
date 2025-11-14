@@ -109,15 +109,15 @@ kommentare_fuehrend = [
     "🚀 **{name}** stürmt an die Spitze! {punkte:.1f} Punkte und kein Ende in Sicht!",
     "👑 **{name}** thront über allen mit {punkte:.1f} Punkten. Ein König unter Spielern!",
     "🏆 {name} setzt sich ab mit {punkte:.1f} Punkten, eine wahre Meisterleistung!",
-"🔥 **{name}** brennt ein Punktefeuerwerk ab – {punkte:.1f} Zähler auf dem Konto!",
-"🌪️ **{name}** wirbelt durch das Feld! {punkte:.1f} Punkte und kein Halten mehr!",
-"🧨 **{name}** sprengt alle Grenzen mit {punkte:.1f} Punkten, was für ein Lauf!",
-"🦁 **{name}** zeigt Löwenmut und dominiert mit {punkte:.1f} Punkten!",
-"🧠 **{name}** spielt in einer eigenen Liga – {punkte:.1f} Punkte sprechen Bände!",
-"🏹 **{name}** trifft ins Schwarze! {punkte:.1f} Punkte und die Führung ist sicher!",
-"🛡️ **{name}** verteidigt die Spitze mit {punkte:.1f} Punkten, unaufhaltsam!",
-"🎯 **{name}** punktet präzise und führt mit {punkte:.1f} Punkten, zielstrebig zum Sieg!",
-"🏇 **{name}** galoppiert dem Feld davon – {punkte:.1f} Punkte auf dem Konto!",
+    "🔥 **{name}** brennt ein Punktefeuerwerk ab – {punkte:.1f} Zähler auf dem Konto!",
+    "🌪️ **{name}** wirbelt durch das Feld! {punkte:.1f} Punkte und kein Halten mehr!",
+    "🧨 **{name}** sprengt alle Grenzen mit {punkte:.1f} Punkten, was für ein Lauf!",
+    "🦁 **{name}** zeigt Löwenmut und dominiert mit {punkte:.1f} Punkten!",
+    "🧠 **{name}** spielt in einer eigenen Liga – {punkte:.1f} Punkte sprechen Bände!",
+    "🏹 **{name}** trifft ins Schwarze! {punkte:.1f} Punkte und die Führung ist sicher!",
+    "🛡️ **{name}** verteidigt die Spitze mit {punkte:.1f} Punkten, unaufhaltsam!",
+    "🎯 **{name}** punktet präzise und führt mit {punkte:.1f} Punkten, zielstrebig zum Sieg!",
+    "🏇 **{name}** galoppiert dem Feld davon – {punkte:.1f} Punkte auf dem Konto!",
 ]
 
 kommentare_letzter = [
@@ -141,15 +141,15 @@ kommentare_rundensieger = [
     "🔥 **{name}** dominiert die Runde! +{gewinn:.1f} Punkte sind kein Zufall.",
     "🎯 **{name}** trifft ins Schwarze – +{gewinn:.1f} Punkte in einer Runde!",
     "⚡ **{name}** zündet den Turbo und holt +{gewinn:.1f} Punkte, was für ein Move!",
-"🏹 **{name}** zielt perfekt – +{gewinn:.1f} Punkte gehen direkt aufs Konto!",
-"🚀 **{name}** hebt ab und landet +{gewinn:.1f} Punkte, das war galaktisch!",
-"🎉 **{name}** feiert den Rundensieg mit +{gewinn:.1f} Punkten, verdient und eindrucksvoll!",
-"🧨 **{name}** lässt es krachen – +{gewinn:.1f} Punkte in einem Durchgang!",
-"🏆 **{name}** holt sich den Pokal dieser Runde mit +{gewinn:.1f} Punkten, stark gespielt!",
-"🕶️ **{name}** bleibt cool und punktet +{gewinn:.1f}, ein echter Profi!",
-"🧠 **{name}** spielt clever und sichert sich +{gewinn:.1f} Punkte, Strategie zahlt sich aus!",
-"🎲 **{name}** würfelt das Glück auf seine Seite – +{gewinn:.1f} Punkte!",
-"🦾 **{name}** zeigt Stärke und holt +{gewinn:.1f} Punkte, eine Maschine auf dem Spielfeld!",
+    "🏹 **{name}** zielt perfekt – +{gewinn:.1f} Punkte gehen direkt aufs Konto!",
+    "🚀 **{name}** hebt ab und landet +{gewinn:.1f} Punkte, das war galaktisch!",
+    "🎉 **{name}** feiert den Rundensieg mit +{gewinn:.1f} Punkten, verdient und eindrucksvoll!",
+    "🧨 **{name}** lässt es krachen – +{gewinn:.1f} Punkte in einem Durchgang!",
+    "🏆 **{name}** holt sich den Pokal dieser Runde mit +{gewinn:.1f} Punkten, stark gespielt!",
+    "🕶️ **{name}** bleibt cool und punktet +{gewinn:.1f}, ein echter Profi!",
+    "🧠 **{name}** spielt clever und sichert sich +{gewinn:.1f} Punkte, Strategie zahlt sich aus!",
+    "🎲 **{name}** würfelt das Glück auf seine Seite – +{gewinn:.1f} Punkte!",
+    "🦾 **{name}** zeigt Stärke und holt +{gewinn:.1f} Punkte, eine Maschine auf dem Spielfeld!",
 ]
 
 kommentare_bonus = [
@@ -157,15 +157,15 @@ kommentare_bonus = [
     "🔁 **{name}** nutzt Rubber-Banding – vielleicht klappt's ja nächstes Mal richtig!",
     "🎁 Bonuszeit für **{name}**! Manchmal ist Verlieren einfach lohnenswert.",
     "🪄 **{name}** zaubert sich den Bonus herbei – Extra-Punkte für Durchhaltevermögen!",
-"🧃 **{name}** bekommt einen Energieschub – Bonuspunkte für den Comeback-Versuch!",
-"🛠️ **{name}** rüstet nach mit Bonuspunkten – vielleicht klappt’s im nächsten Anlauf?",
-"🎈 **{name}** wird belohnt fürs Durchhalten – Bonuspunkte fliegen ein,",
-"🧸 **{name}** bekommt Trostpunkte – Bonus für den Mut, weiterzuspielen.",
-"🔋 **{name}** lädt sich neu auf – Bonuspunkte für frischen Schwung!",
-"🌀 **{name}** dreht das Momentum – Bonuspunkte könnten alles ändern.",
-"📦 **{name}** packt den Bonus aus – ein Geschenk für den Underdog.",
-"🧬 **{name}** bekommt evolutionäre Unterstützung – Bonuspunkte für den nächsten Schritt.",
-"🕹️ **{name}** aktiviert den Bonus-Modus – vielleicht ist das der Gamechanger!",
+    "🧃 **{name}** bekommt einen Energieschub – Bonuspunkte für den Comeback-Versuch!",
+    "🛠️ **{name}** rüstet nach mit Bonuspunkten – vielleicht klappt’s im nächsten Anlauf?",
+    "🎈 **{name}** wird belohnt fürs Durchhalten – Bonuspunkte fliegen ein,",
+    "🧸 **{name}** bekommt Trostpunkte – Bonus für den Mut, weiterzuspielen.",
+    "🔋 **{name}** lädt sich neu auf – Bonuspunkte für frischen Schwung!",
+    "🌀 **{name}** dreht das Momentum – Bonuspunkte könnten alles ändern.",
+    "📦 **{name}** packt den Bonus aus – ein Geschenk für den Underdog.",
+    "🧬 **{name}** bekommt evolutionäre Unterstützung – Bonuspunkte für den nächsten Schritt.",
+    "🕹️ **{name}** aktiviert den Bonus-Modus – vielleicht ist das der Gamechanger!",
 ]
 
 kommentare_bonus_gewinnt = [
@@ -173,15 +173,15 @@ kommentare_bonus_gewinnt = [
     "👀 **{name}** kommt von hinten – mit Bonus +{gewinn:.1f} Punkte! Da staunt das Feld.",
     "🧨 **{name}** startet durch! Rubber-Banding at its best: +{gewinn:.1f} Punkte!",
     "🚀 **{name}** zündet den Nachbrenner und holt +{gewinn:.1f} Punkte, das ist Comeback-Power!",
-"🎮 **{name}** spielt Reverse-Mode – von hinten nach vorn mit +{gewinn:.1f} Punkten!",
-"🦘 **{name}** springt aus dem Schatten und kassiert +{gewinn:.1f} Punkte, das nennt man Timing!",
-"🧃 **{name}** tankt Bonusenergie und liefert +{gewinn:.1f} Punkte ab, das war stark!",
-"🎢 **{name}** fährt Achterbahn – ganz unten gestartet, ganz oben gelandet mit +{gewinn:.1f} Punkten!",
-"🕹️ **{name}** aktiviert den Comeback-Code – +{gewinn:.1f} Punkte aus dem Nichts!",
-"🪂 **{name}** landet punktgenau – +{gewinn:.1f} Punkte aus der Tiefe des Feldes!",
-"🧬 **{name}** mutiert zum Rundensieger – +{gewinn:.1f} Punkte durch Bonus-Evolution!",
-"🎯 **{name}** trifft aus dem Off – +{gewinn:.1f} Punkte und alle schauen verdutzt!",
-"🦾 **{name}** zeigt Comeback-Qualitäten – +{gewinn:.1f} Punkte und plötzlich ganz vorn!",
+    "🎮 **{name}** spielt Reverse-Mode – von hinten nach vorn mit +{gewinn:.1f} Punkten!",
+    "🦘 **{name}** springt aus dem Schatten und kassiert +{gewinn:.1f} Punkte, das nennt man Timing!",
+    "🧃 **{name}** tankt Bonusenergie und liefert +{gewinn:.1f} Punkte ab, das war stark!",
+    "🎢 **{name}** fährt Achterbahn – ganz unten gestartet, ganz oben gelandet mit +{gewinn:.1f} Punkten!",
+    "🕹️ **{name}** aktiviert den Comeback-Code – +{gewinn:.1f} Punkte aus dem Nichts!",
+    "🪂 **{name}** landet punktgenau – +{gewinn:.1f} Punkte aus der Tiefe des Feldes!",
+    "🧬 **{name}** mutiert zum Rundensieger – +{gewinn:.1f} Punkte durch Bonus-Evolution!",
+    "🎯 **{name}** trifft aus dem Off – +{gewinn:.1f} Punkte und alle schauen verdutzt!",
+    "🦾 **{name}** zeigt Comeback-Qualitäten – +{gewinn:.1f} Punkte und plötzlich ganz vorn!",
 ]
 
 # Letzten gespeicherten Kommentar abrufen
@@ -256,10 +256,6 @@ df_chart = pd.DataFrame(punkteverlauf)
 # Nur Runden bis zur vorletzten Runde behalten
 max_runden_index = len(runden) - 2  # da 0-basiert, -2 = vorletzte Runde
 # Runde ist String wie "1: XYZ", wir filtern nach der Rundenzahl vor dem Doppelpunkt
-
-#df_chart = df_chart[df_chart["Runde"].apply(
-#    lambda r: int(r.split(":")[0]) <= max_runden_index + 1  # +1 da Runde 1-basiert
-#)]
 
 chart = alt.Chart(df_chart).mark_line(point=True).encode(
     x="Runde",
@@ -365,7 +361,6 @@ with col5:
 
 with col6:
     st.metric("🔁 Konstanter Punktesammler", f"{konstantester_spieler} ({konstanter_gewinn:.1f})", "Ø Rundengewinn")
-
 
 with col7:
     st.metric("🎯 Bonus-Effizienz", f"{bester_bonusnutzer} ({bester_bonusnutzer_anzahl})", "Bonus führte zum Rundensieg")
