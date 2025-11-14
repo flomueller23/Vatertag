@@ -364,7 +364,7 @@ with col3:
 with col4:
     st.metric("🎲 Risikofreudigster Spieler", risikofreudigster_spieler, f"{max_durchschnitt_einsatz:.1f} Ø Einsatz")
 
-col5, col5, col7, col8 = st.columns(4)
+col5, col6, col7, col8 = st.columns(4)
 
 with col5:
     st.metric("📈 Effektivster Spieler", effektivster_spieler, f"{effizienz_wert:.2f} Gewinn/Einsatz")
