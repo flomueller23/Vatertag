@@ -182,14 +182,18 @@ aktueller_letzter = min(zwischenpunkte, key=zwischenpunkte.get)
 rundensieger = max(gewinne_der_runde, key=lambda x: x[1])
 bonus_empfaenger = letzter_spieler
 
-# Kommentare nur für neue Runden generieren
-anzahl_bereits_kommentierter_runden = len(kommentare)
-anzahl_rundendaten = len(rundendaten)
+# Kommentare als Objekte mit Rundenindex speichern
+kommentare_roh = daten.get("kommentare", [])
+kommentare = kommentare_roh if isinstance(kommentare_roh, list) else []
+
+# Runde-Indexe extrahieren
+bereits_kommentierte_runden = {k["runde_index"] for k in kommentare if "runde_index" in k}
 
 neue_kommentare = []
 
-for j in range(anzahl_bereits_kommentierter_runden, anzahl_rundendaten):
-    rd = rundendaten[j]
+for j, rd in enumerate(rundendaten):
+    if j in bereits_kommentierte_runden:
+        continue  # Kommentar existiert bereits
 
     kommentarblock = f"### 🕓 Runde {j+1}: *{rd['runde']}* ({rd['zeit']})\n"
     kommentarblock += "- " + random.choice(kommentare_fuehrend).format(
@@ -211,7 +215,11 @@ for j in range(anzahl_bereits_kommentierter_runden, anzahl_rundendaten):
             name=rd["bonus"]
         ) + "\n"
 
-    neue_kommentare.append(kommentarblock)
+    neue_kommentare.append({
+        "runde_index": j,
+        "runde_name": rd["runde"],
+        "text": kommentarblock
+    })
 
 # Nur speichern, wenn es neue Kommentare gibt
 if neue_kommentare:
@@ -234,10 +242,10 @@ for sp in sorted(spieler, key=lambda x: -x["punkte"]):
 df = pd.DataFrame(tabelle)
 st.dataframe(df, use_container_width=True, hide_index=True)
 
-#Spielkommentare anzeigen
+# Aktuellen Kommentar anzeigen
 st.subheader("💬 Spielkommentar")
 if kommentare:
-    st.markdown(kommentare[-1])
+    st.markdown(kommentare[-1]["text"])
 else:
     st.info("Noch kein Kommentar verfügbar.")
 
@@ -311,14 +319,10 @@ with col3:
 with col4:
     st.metric("🔥 Meisten Punkte in einem Spiel", f"{gewinner}", f"+{max_gewinn:.1f} Punkte ({rundenname})")
 
-#Spielkommentare anzeigen    
 st.subheader("💬 Spielkommentare")
-# Alle Kommentare außer dem letzten anzeigen
-for kommentar in kommentare[:-1]:  # [: -1] = alles außer letzter Eintrag
-    with st.expander(kommentar.split("\n")[0]):
-        st.markdown("\n".join(kommentar.split("\n")[1:]))
-
-
+for kommentar in kommentare[:-1]:  # alle außer dem letzten
+    with st.expander(kommentar["text"].split("\n")[0]):
+        st.markdown("\n".join(kommentar["text"].split("\n")[1:]))
 
 aktuelle_runde_index = len(runden) - 1  # Index der letzten Runde (0-basiert)
 aktuelle_runde_name = f"{len(runden)}: {runden[-1]['name']}"
