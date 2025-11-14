@@ -193,7 +193,6 @@ for i, k in enumerate(kommentare_roh):
             "runde_name": f"Runde {i+1}",
             "text": k
         })
-})
 
 # Runde-Indexe extrahieren
 bereits_kommentierte_runden = {k["runde_index"] for k in kommentare}
