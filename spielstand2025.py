@@ -50,6 +50,14 @@ for sp in spieler:
 punkteverlauf = []
 zwischenpunkte = {sp["name"]: 20.0 for sp in spieler}
 
+# Startrunde hinzufügen
+for sp_name in zwischenpunkte:
+    punkteverlauf.append({
+        "Runde": "0: Start",
+        "Spieler": sp_name,
+        "Punkte": 20.0
+    })
+
 bonus_empfaenger_pro_runde = []
 
 for i, runde in enumerate(runden):
