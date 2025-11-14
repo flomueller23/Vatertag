@@ -349,7 +349,7 @@ punkte_liste = [sp["punkte"] for sp in spieler]
 spannungsindex = pd.Series(punkte_liste).std()
 
 
-# Darstellung in vier Spalten
+# Darstellung in vier Spalten und 2 Zeilen
 col1, col2, col3, col4 = st.columns(4)
 
 with col1:
@@ -360,8 +360,6 @@ with col2:
 
 with col3:
     st.metric("🎁 Häufigster Rubber-Banding-Nutzer", f"{haeufigster_bonus_spieler}", f"{bonus_anzahl}×")
-
-col5, col6, col7, col8, col9 = st.columns(5)
 
 with col4:
     st.metric("🎲 Risikofreudigster Spieler", risikofreudigster_spieler, f"{max_durchschnitt_einsatz:.1f} Ø Einsatz")
