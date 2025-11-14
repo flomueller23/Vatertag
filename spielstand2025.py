@@ -95,41 +95,6 @@ for i, runde in enumerate(runden):
     "bonus": bonus_empfaenger_pro_runde[i],
 })
 
-# Kommentar für diese Runde erzeugen
-kommentarblock = f"### 🕓 Runde {i+1}: *{runde['name']}* ({rundenzeit})\n"
-kommentarblock += "- " + random.choice(kommentare_fuehrend).format(
-    name=rundendaten[-1]["fuehrender"], punkte=zwischenpunkte[rundendaten[-1]["fuehrender"]]
-) + "\n"
-kommentarblock += "- " + random.choice(kommentare_letzter).format(
-    name=rundendaten[-1]["letzter"], punkte=zwischenpunkte[rundendaten[-1]["letzter"]]
-) + "\n"
-kommentarblock += "- " + random.choice(kommentare_rundensieger).format(
-    name=rundendaten[-1]["rundensieger"][0], gewinn=rundendaten[-1]["rundensieger"][1]
-) + "\n"
-
-if rundendaten[-1]["bonus"] == rundendaten[-1]["rundensieger"][0]:
-    kommentarblock += "- " + random.choice(kommentare_bonus_gewinnt).format(
-        name=rundendaten[-1]["bonus"], gewinn=rundendaten[-1]["rundensieger"][1]
-    ) + "\n"
-else:
-    kommentarblock += "- " + random.choice(kommentare_bonus).format(
-        name=rundendaten[-1]["bonus"]
-    ) + "\n"
-
-# Nur speichern, wenn noch kein Kommentar für diese Runde existiert
-runde_index = i
-runde_name = runde["name"]
-bereits_kommentierte_runden = {k["runde_index"] for k in kommentare}
-if runde_index not in bereits_kommentierte_runden:
-    neuer_kommentar = {
-        "runde_index": runde_index,
-        "runde_name": runde_name,
-        "text": kommentarblock
-    }
-    db.collection("spiele").document(FESTER_SPIELNAME).update({
-        "kommentare": firestore.ArrayUnion([neuer_kommentar])
-    })
-    kommentare.append(neuer_kommentar)
 
 kommentare_fuehrend = [
     "🥇 **{name}** führt jetzt mit {punkte:.1f} Punkten. Niemand stoppt diesen Siegeszug!",
@@ -210,6 +175,24 @@ kommentare_bonus_gewinnt = [
 "🎯 **{name}** trifft aus dem Off – +{gewinn:.1f} Punkte und alle schauen verdutzt!",
 "🦾 **{name}** zeigt Comeback-Qualitäten – +{gewinn:.1f} Punkte und plötzlich ganz vorn!",
 ]
+
+# Kommentare generieren
+aktueller_fuehrender = max(zwischenpunkte, key=zwischenpunkte.get)
+aktueller_letzter = min(zwischenpunkte, key=zwischenpunkte.get)
+rundensieger = max(gewinne_der_runde, key=lambda x: x[1])
+bonus_empfaenger = letzter_spieler
+
+kommentare_roh = daten.get("kommentare", [])
+kommentare = []
+for i, k in enumerate(kommentare_roh):
+    if isinstance(k, dict) and "text" in k and "runde_index" in k:
+        kommentare.append(k)
+    elif isinstance(k, str):
+        kommentare.append({
+            "runde_index": i,
+            "runde_name": f"Runde {i+1}",
+            "text": k
+        })
 
 # Runde-Indexe extrahieren
 bereits_kommentierte_runden = {k["runde_index"] for k in kommentare}
