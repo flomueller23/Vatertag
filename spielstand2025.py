@@ -329,11 +329,20 @@ gewinn_durchschnitt = {
 konstantester_spieler = max(gewinn_durchschnitt, key=gewinn_durchschnitt.get)
 konstanter_gewinn = gewinn_durchschnitt[konstantester_spieler]
 
-# 7. Bonus-Effizienz – Wie oft hat ein Bonus-Empfänger die Runde gewonnen?
-bonus_gewinnt = sum(
-    1 for r in rundendaten if r["bonus"] == r["rundensieger"][0]
-)
-bonus_effizienz = bonus_gewinnt / len(rundendaten) * 100 if rundendaten else 0
+# 7. Bonus-Effizienz – Wer nutzt den Bonus am besten?
+bonus_sieger = {}
+for r in rundendaten:
+    if r["bonus"] == r["rundensieger"][0]:
+        name = r["bonus"]
+        bonus_sieger[name] = bonus_sieger.get(name, 0) + 1
+
+if bonus_sieger:
+    bester_bonusnutzer = max(bonus_sieger, key=bonus_sieger.get)
+    bester_bonusnutzer_anzahl = bonus_sieger[bester_bonusnutzer]
+else:
+    bester_bonusnutzer = "–"
+    bester_bonusnutzer_anzahl = 0
+
 
 # 8. Spannungsindex – Standardabweichung der aktuellen Punktestände
 punkte_liste = [sp["punkte"] for sp in spieler]
@@ -365,7 +374,7 @@ with col6:
 
 
 with col7:
-    st.metric("🎯 Bonus-Effizienz", f"{bonus_effizienz:.1f}%", f"{bonus_gewinnt}× Bonus führte zum Sieg")
+    st.metric("🎯 Bonus-Effizienz", f"{bester_bonusnutzer} ({bester_bonusnutzer_anzahl})", "Bonus führte zum Rundensieg")
 
 with col8:
     st.metric("📊 Spannungsindex", "±{:.2f}".format(spannungsindex), "Punkte-Streuung")
