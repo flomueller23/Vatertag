@@ -234,8 +234,18 @@ from firebase_admin import firestore
 
 if neue_kommentare:
     db.collection("spiele").document(FESTER_SPIELNAME).update({
-        "kommentare": firestore.ArrayUnion(neue_kommentare)
-    })
+        # Bestehende Kommentare übernehmen
+aktualisierte_kommentare = kommentare.copy()
+
+# Neue Kommentare einfügen, aber alte mit gleichem runde_index ersetzen
+for neu in neue_kommentare:
+    aktualisierte_kommentare = [k for k in aktualisierte_kommentare if k["runde_index"] != neu["runde_index"]]
+    aktualisierte_kommentare.append(neu)
+
+# Jetzt vollständig speichern
+db.collection("spiele").document(FESTER_SPIELNAME).update({
+    "kommentare": aktualisierte_kommentare
+})
 
 # Punktetabelle anzeigen
 st.subheader("📊 Aktueller Punktestand")
