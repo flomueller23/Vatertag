@@ -232,9 +232,7 @@ for j, rd in enumerate(rundendaten):
 # Speichern der Kommentare in Firebase
 from firebase_admin import firestore
 
-if neue_kommentare:
-    db.collection("spiele").document(FESTER_SPIELNAME).update({
-        # Bestehende Kommentare übernehmen
+# Bestehende Kommentare übernehmen
 aktualisierte_kommentare = kommentare.copy()
 
 # Neue Kommentare einfügen, aber alte mit gleichem runde_index ersetzen
@@ -246,7 +244,7 @@ for neu in neue_kommentare:
 db.collection("spiele").document(FESTER_SPIELNAME).update({
     "kommentare": aktualisierte_kommentare
 })
-)}
+
 # Punktetabelle anzeigen
 st.subheader("📊 Aktueller Punktestand")
 tabelle = []
