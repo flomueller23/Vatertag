@@ -218,36 +218,6 @@ for j, rd in enumerate(rundendaten):
         "text": kommentarblock
     })
 
-for j, rd in enumerate(rundendaten):
-#    if j in bereits_kommentierte_runden:
-#        continue  # Kommentar existiert bereits
-
-    kommentarblock = f"### 🕓 Runde {j+1}: *{rd['runde']}* ({rd['zeit']})\n"
-    kommentarblock += "- " + random.choice(kommentare_fuehrend).format(
-        name=rd["fuehrender"], punkte=zwischenpunkte[rd["fuehrender"]]
-    ) + "\n"
-    kommentarblock += "- " + random.choice(kommentare_letzter).format(
-        name=rd["letzter"], punkte=zwischenpunkte[rd["letzter"]]
-    ) + "\n"
-    kommentarblock += "- " + random.choice(kommentare_rundensieger).format(
-        name=rd["rundensieger"][0], gewinn=rd["rundensieger"][1]
-    ) + "\n"
-
-    if rd["bonus"] == rd["rundensieger"][0]:
-        kommentarblock += "- " + random.choice(kommentare_bonus_gewinnt).format(
-            name=rd["bonus"], gewinn=rd["rundensieger"][1]
-        ) + "\n"
-    else:
-        kommentarblock += "- " + random.choice(kommentare_bonus).format(
-            name=rd["bonus"]
-        ) + "\n"
-
-    neue_kommentare.append({
-        "runde_index": j,
-        "runde_name": rd["runde"],
-        "text": kommentarblock
-    })
-
 # Nur speichern, wenn es neue Kommentare gibt
 # from firebase_admin import firestore
 
