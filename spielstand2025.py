@@ -361,7 +361,8 @@ with col5:
     st.metric("📈 Effektivster Spieler", effektivster_spieler, f"{effizienz_wert:.2f} Gewinn/Einsatz")
 
 with col6:
-    st.metric("🔁 Konstanter Punktesammler", konstanter_gewinn, f"{konstanter_gewinn:.1f} Ø Rundengewinn")
+    st.metric("🔁 Konstanter Punktesammler", f"{konstantester_spieler} ({konstanter_gewinn:.1f})", "Ø Rundengewinn")
+
 
 with col7:
     st.metric("🎯 Bonus-Effizienz", f"{bonus_effizienz:.1f}%", f"{bonus_gewinnt}× Bonus führte zum Sieg")
