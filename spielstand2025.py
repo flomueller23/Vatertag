@@ -195,7 +195,7 @@ for i, k in enumerate(kommentare_roh):
         })
 
 # Runde-Indexe extrahieren
-bereits_kommentierte_runden = {k["runde_index"] for k in kommentare}
+# bereits_kommentierte_runden = {k["runde_index"] for k in kommentare}
 
 neue_kommentare = []
 
@@ -230,12 +230,12 @@ for j, rd in enumerate(rundendaten):
     })
 
 # Nur speichern, wenn es neue Kommentare gibt
-from firebase_admin import firestore
+# from firebase_admin import firestore
 
-if neue_kommentare:
-    db.collection("spiele").document(FESTER_SPIELNAME).update({
-        "kommentare": firestore.ArrayUnion(neue_kommentare)
-    })
+# if neue_kommentare:
+#    db.collection("spiele").document(FESTER_SPIELNAME).update({
+#        "kommentare": firestore.ArrayUnion(neue_kommentare)
+#    })
 
 
 # Punktetabelle anzeigen
@@ -301,12 +301,6 @@ bonus_counter = pd.Series(bonus_empfaenger_pro_runde)
 haeufigster_bonus_spieler = bonus_counter.value_counts().idxmax()
 bonus_anzahl = bonus_counter.value_counts().max()
 
-# 4. Meiste Punkte in einer einzelnen Runde
-beste_runde = None
-max_gewinn = -1
-gewinner = None
-rundenname = ""
-
 for runden_index, runde in enumerate(rundendaten):
     name, gewinn = runde["rundensieger"]
     if gewinn > max_gewinn:
@@ -327,12 +321,12 @@ with col3:
     st.metric("🎁 Häufigster Rubber-Banding-Nutzer", f"{haeufigster_bonus_spieler}", f"{bonus_anzahl}×")
 
 with col4:
-    st.metric("🔥 Meisten Punkte in einem Spiel", f"{gewinner}", f"+{max_gewinn:.1f} Punkte ({rundenname})")
+    
 
-st.subheader("💬 Spielkommentare")
-for kommentar in kommentare[:-1]:  # alle außer dem letzten
-    with st.expander(kommentar["text"].split("\n")[0]):
-        st.markdown("\n".join(kommentar["text"].split("\n")[1:]))
+#st.subheader("💬 Spielkommentare")
+#for kommentar in kommentare[:-1]:  # alle außer dem letzten
+#    with st.expander(kommentar["text"].split("\n")[0]):
+#        st.markdown("\n".join(kommentar["text"].split("\n")[1:]))
 
-aktuelle_runde_index = len(runden) - 1  # Index der letzten Runde (0-basiert)
-aktuelle_runde_name = f"{len(runden)}: {runden[-1]['name']}"
+#aktuelle_runde_index = len(runden) - 1  # Index der letzten Runde (0-basiert)
+#aktuelle_runde_name = f"{len(runden)}: {runden[-1]['name']}"
