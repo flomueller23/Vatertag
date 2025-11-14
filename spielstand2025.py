@@ -184,11 +184,11 @@ bonus_empfaenger = letzter_spieler
 
 # Kommentare nur für neue Runden generieren
 anzahl_bereits_kommentierter_runden = len(kommentare)
-anzahl_abgeschlossener_runden = len(rundendaten) - 1  # letzte Runde wird separat behandelt
+anzahl_rundendaten = len(rundendaten)
 
 neue_kommentare = []
 
-for j in range(anzahl_bereits_kommentierter_runden, anzahl_abgeschlossener_runden):
+for j in range(anzahl_bereits_kommentierter_runden, anzahl_rundendaten):
     rd = rundendaten[j]
 
     kommentarblock = f"### 🕓 Runde {j+1}: *{rd['runde']}* ({rd['zeit']})\n"
@@ -221,32 +221,32 @@ if neue_kommentare:
     })
     
 # Kommentar für die letzte Runde (nur wenn noch nicht vorhanden)
-if rundendaten and len(kommentare) < len(rundendaten):
-    letzte_runde = rundendaten[-1]
-    kommentarblock = f"### 🕓 Runde {len(rundendaten)}: *{letzte_runde['runde']}* ({letzte_runde['zeit']})\n"
-    kommentarblock += "- " + random.choice(kommentare_fuehrend).format(
-        name=letzte_runde["fuehrender"], punkte=zwischenpunkte[letzte_runde["fuehrender"]]
-    ) + "\n"
-    kommentarblock += "- " + random.choice(kommentare_letzter).format(
-        name=letzte_runde["letzter"], punkte=zwischenpunkte[letzte_runde["letzter"]]
-    ) + "\n"
-    kommentarblock += "- " + random.choice(kommentare_rundensieger).format(
-        name=letzte_runde["rundensieger"][0], gewinn=letzte_runde["rundensieger"][1]
-    ) + "\n"
+#if rundendaten and len(kommentare) < len(rundendaten):
+ #   letzte_runde = rundendaten[-1]
+  #  kommentarblock = f"### 🕓 Runde {len(rundendaten)}: *{letzte_runde['runde']}* ({letzte_runde['zeit']})\n"
+   # kommentarblock += "- " + random.choice(kommentare_fuehrend).format(
+    #    name=letzte_runde["fuehrender"], punkte=zwischenpunkte[letzte_runde["fuehrender"]]
+   # ) + "\n"
+   # kommentarblock += "- " + random.choice(kommentare_letzter).format(
+  #      name=letzte_runde["letzter"], punkte=zwischenpunkte[letzte_runde["letzter"]]
+  #  ) + "\n"
+ #   kommentarblock += "- " + random.choice(kommentare_rundensieger).format(
+   #     name=letzte_runde["rundensieger"][0], gewinn=letzte_runde["rundensieger"][1]
+   # ) + "\n"
+#
+ #   if letzte_runde["bonus"] == letzte_runde["rundensieger"][0]:
+  #      kommentarblock += "- " + random.choice(kommentare_bonus_gewinnt).format(
+   #         name=letzte_runde["bonus"], gewinn=letzte_runde["rundensieger"][1]
+    #    ) + "\n"
+   # else:
+    #    kommentarblock += "- " + random.choice(kommentare_bonus).format(
+    #        name=letzte_runde["bonus"]
+    #    ) + "\n"
 
-    if letzte_runde["bonus"] == letzte_runde["rundensieger"][0]:
-        kommentarblock += "- " + random.choice(kommentare_bonus_gewinnt).format(
-            name=letzte_runde["bonus"], gewinn=letzte_runde["rundensieger"][1]
-        ) + "\n"
-    else:
-        kommentarblock += "- " + random.choice(kommentare_bonus).format(
-            name=letzte_runde["bonus"]
-        ) + "\n"
-
-    kommentare.append(kommentarblock)
-    db.collection("spiele").document(FESTER_SPIELNAME).update({
-        "kommentare": kommentare
-    })
+  #  kommentare.append(kommentarblock)
+  #  db.collection("spiele").document(FESTER_SPIELNAME).update({
+  #      "kommentare": kommentare
+  #  })
 
 # Punktetabelle anzeigen
 st.subheader("📊 Aktueller Punktestand")
