@@ -267,9 +267,9 @@ df_chart = pd.DataFrame(punkteverlauf)
 max_runden_index = len(runden) - 2  # da 0-basiert, -2 = vorletzte Runde
 # Runde ist String wie "1: XYZ", wir filtern nach der Rundenzahl vor dem Doppelpunkt
 
-df_chart = df_chart[df_chart["Runde"].apply(
-    lambda r: int(r.split(":")[0]) <= max_runden_index + 1  # +1 da Runde 1-basiert
-)]
+#df_chart = df_chart[df_chart["Runde"].apply(
+#    lambda r: int(r.split(":")[0]) <= max_runden_index + 1  # +1 da Runde 1-basiert
+#)]
 
 chart = alt.Chart(df_chart).mark_line(point=True).encode(
     x="Runde",
