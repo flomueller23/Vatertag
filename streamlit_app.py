@@ -117,24 +117,6 @@ if st.session_state.spiel_started and not st.session_state.spieler:
         st.success("Spiel gespeichert.")
         st.rerun()
 
-# Anzeige
-    for sp in sorted(st.session_state.spieler, key=lambda x: -x["punkte"]):
-        zeile = {"Spieler": sp["name"], "Punkte": round(sp["punkte"],1)}
-        for i in range(len(st.session_state.runden) - 1, -1, -1):
-            runde = st.session_state.runden[i]
-            if i < len(sp["einsaetze"]):
-                bonus_symbol = "★" if bonus_empfaenger_pro_runde[i] and sp["name"] in bonus_empfaenger_pro_runde[i] else ""
-                vorzeichen = "+" if sp['gewinne'][i] > 0 else ""
-                zeile[runde["name"]] = (
-                    f"E: {int(sp['einsaetze'][i])} | "
-                    f"P: {sp['plaetze'][i]} | "
-                    f"{vorzeichen}{round(sp['gewinne'][i],1)}{bonus_symbol}"
-                )
-        daten.append(zeile)
-
-    df = pd.DataFrame(daten)
-    st.dataframe(df, use_container_width=True, hide_index=True)
-
 # RUNDENVERWALTUNG
 if st.session_state.spiel_started and st.session_state.spieler:
     
