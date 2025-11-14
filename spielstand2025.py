@@ -200,6 +200,10 @@ kommentar_runde += random.choice(kommentare_letzter).format(name=aktueller_letzt
 # 4. Bonus-Kommentar
 kommentar_runde += random.choice(kommentare_bonus).format(name=bonus_empfaenger)
 
+# Kommentar auch in Firestore speichern
+spiel_ref = db.collection("spiele").document(FESTER_SPIELNAME)
+spiel_ref.update({"kommentare": kommentare})
+
 # Punktetabelle anzeigen
 st.subheader("📊 Aktueller Punktestand")
 tabelle = []
