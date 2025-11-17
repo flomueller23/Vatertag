@@ -15,7 +15,7 @@ st.set_page_config(page_title="📺 Live Spielstand", layout="wide")
 streamlit_autorefresh.st_autorefresh(interval=300_000, key="refresh")
 
 # 🔒 Fester Spielname – HIER ANPASSEN!
-FESTER_SPIELNAME = "Wintervatertagsspiele 2026"
+FESTER_SPIELNAME = "Vatertagsspiele 2026"
 
 # Firebase verbinden
 def get_firestore_client():
@@ -27,7 +27,7 @@ def get_firestore_client():
 
 db = get_firestore_client()
 
-st.title("🎲 Vatertagsspiele 2025 - Spielstand (live)")
+st.title("🎲 Vatertagsspiele 2026 - Spielstand (live)")
 
 # Spiel laden
 spiel_doc = db.collection("spiele").document(FESTER_SPIELNAME).get()
