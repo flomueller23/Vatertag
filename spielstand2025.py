@@ -191,7 +191,7 @@ letzte_kommentierte_runde = letzter_kommentar["runde"] if letzter_kommentar else
 # Kommentare generieren
 aktueller_fuehrender = max(zwischenpunkte, key=zwischenpunkte.get)
 aktueller_letzter = min(zwischenpunkte, key=zwischenpunkte.get)
-#rundensieger = max(gewinne_der_runde, key=lambda x: x[1])
+rundensieger = max(gewinne_der_runde, key=lambda x: x[1])
 bonus_empfaenger = letzter_spieler
 
 # Nur neuen Kommentar erzeugen, wenn sich die Runde verändert hat
