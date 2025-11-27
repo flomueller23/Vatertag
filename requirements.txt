@@ -3,3 +3,4 @@ firebase-admin
 pandas
 streamlit-autorefresh
 pyrebase4
+openai>=1.0.0
