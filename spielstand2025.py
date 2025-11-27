@@ -214,8 +214,8 @@ kommentare_bonus_gewinnt = [
     "🦾 **{name}** zeigt Comeback-Qualitäten – +{gewinn:.1f} Punkte und plötzlich ganz vorn!",
 ]
 
-    # Kommentar zusammenbauen
-    kommentar_text = ""
+# Kommentar zusammenbauen
+kommentar_text = ""
     
     if bonus_empfaenger and rundensieger[0] == bonus_empfaenger:
         kommentar_text += random.choice(kommentare_bonus_gewinnt).format(
