@@ -9,6 +9,7 @@ import streamlit_autorefresh
 from datetime import datetime
 from zoneinfo import ZoneInfo
 import streamlit.components.v1 as components
+import re
 
 st.set_page_config(page_title="📺 Live Spielstand", layout="wide")
 
@@ -350,13 +351,15 @@ spieler, punkteverlauf, bonus_empfaenger_pro_runde = berechne_punktestand(
 kommentar = generiere_kommentar(spieler, daten["runden"], bonus_empfaenger_pro_runde)
 
 #Sprachausgabe des Kommentars
+kommentar_fuer_sprachausgabe = re.sub(r"\*+", "", kommentar)
+
 components.html(
     f"""
     <script>
-        const msg = new SpeechSynthesisUtterance({json.dumps(kommentar)});
+        const msg = new SpeechSynthesisUtterance({json.dumps(kommentar_fuer_sprachausgabe)});
         msg.lang = "de-DE";
-        window.speechSynthesis.cancel();    // vorherige Sprachausgaben stoppen
-        window.speechSynthesis.speak(msg);  // direkt sprechen
+        window.speechSynthesis.cancel();
+        window.speechSynthesis.speak(msg);
     </script>
     """,
     height=0,
