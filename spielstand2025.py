@@ -10,25 +10,6 @@ from datetime import datetime
 from zoneinfo import ZoneInfo
 import streamlit.components.v1 as components
 
-# ----------------------------------------------------
-# 👇 HIER kommt dein Vorlese-Code hin
-# ----------------------------------------------------
-
-st.title("🎲 Vatertagsspiele 2026 - Spielstand (live)")
-
-# JavaScript einbetten
-components.html(
-    f"""
-    <script>
-        const msg = new SpeechSynthesisUtterance({json.dumps(kommentar)});
-        msg.lang = "de-DE";
-        window.speechSynthesis.cancel();    // vorherige Sprachausgaben stoppen
-        window.speechSynthesis.speak(msg);  // direkt sprechen
-    </script>
-    """,
-    height=0,
-)
-
 st.set_page_config(page_title="📺 Live Spielstand", layout="wide")
 
 # Auto-Refresh alle 1 Minuten (60.000 Millisekunden)
@@ -367,6 +348,19 @@ spieler, punkteverlauf, bonus_empfaenger_pro_runde = berechne_punktestand(
 
 # Kommentar generieren (GECACHT!)
 kommentar = generiere_kommentar(spieler, daten["runden"], bonus_empfaenger_pro_runde)
+
+#Sprachausgabe des Kommentars
+components.html(
+    f"""
+    <script>
+        const msg = new SpeechSynthesisUtterance({json.dumps(kommentar)});
+        msg.lang = "de-DE";
+        window.speechSynthesis.cancel();    // vorherige Sprachausgaben stoppen
+        window.speechSynthesis.speak(msg);  // direkt sprechen
+    </script>
+    """,
+    height=0,
+)
 
 # Statistiken berechnen (GECACHT!)
 stats = berechne_statistiken(spieler, bonus_empfaenger_pro_runde, punkteverlauf)
