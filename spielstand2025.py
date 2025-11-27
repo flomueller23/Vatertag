@@ -22,8 +22,8 @@ components.html(
     <script>
         const msg = new SpeechSynthesisUtterance({json.dumps(kommentar)});
         msg.lang = "de-DE";
-        window.speechSynthesis.cancel();      // vorherige Ausgaben stoppen
-        window.speechSynthesis.speak(msg);    // direkt sprechen
+        window.speechSynthesis.cancel();    // vorherige Sprachausgaben stoppen
+        window.speechSynthesis.speak(msg);  // direkt sprechen
     </script>
     """,
     height=0,
