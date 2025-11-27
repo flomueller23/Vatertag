@@ -359,10 +359,34 @@ kommentar_clean = re.sub(r"[^\w\s.,!?-]", "", kommentar_clean)
 components.html(
     f"""
     <script>
-        const msg = new SpeechSynthesisUtterance({json.dumps(kommentar_clean)});
+        // Kommentar, der gesprochen werden soll
+        const text = {json.dumps(kommentar_clean)};
+
+        // Neue SpeechSynthesisUtterance erstellen
+        const msg = new SpeechSynthesisUtterance(text);
         msg.lang = "de-DE";
-        window.speechSynthesis.cancel();
-        window.speechSynthesis.speak(msg);
+
+        // Stimmen laden (asynchron!)
+        function speakWithGoogleVoice() {{
+            const voices = window.speechSynthesis.getVoices();
+            // Google Deutsch Stimme auswählen, fallback: erste deutsche Stimme
+            let voice = voices.find(v => v.lang === 'de-DE' && v.name.includes('Google'));
+            if (!voice) {{
+                voice = voices.find(v => v.lang === 'de-DE');
+            }}
+            msg.voice = voice;
+
+            // Vorherige Sprachausgabe stoppen und neue starten
+            window.speechSynthesis.cancel();
+            window.speechSynthesis.speak(msg);
+        }}
+
+        // Manche Browser laden Stimmen asynchron, daher Timeout / event
+        if (window.speechSynthesis.getVoices().length === 0) {{
+            window.speechSynthesis.onvoiceschanged = speakWithGoogleVoice;
+        }} else {{
+            speakWithGoogleVoice();
+        }}
     </script>
     """,
     height=0,
