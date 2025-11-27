@@ -148,7 +148,7 @@ kommentare_fuehrend = [
     "🛡️ **{name}** verteidigt die Spitze mit {punkte:.1f} Punkten, unaufhaltsam!",
     "🎯 **{name}** punktet präzise und führt mit {punkte:.1f} Punkten, zielstrebig zum Sieg!",
     "🏇 **{name}** galoppiert dem Feld davon – {punkte:.1f} Punkte auf dem Konto!",
-]
+    ]
 
 kommentare_letzter = [
     "🐢 **{name}** hinkt mit {punkte:.1f} Punkten hinterher. Vielleicht war das ein geheimer Plan?",
@@ -164,7 +164,7 @@ kommentare_letzter = [
 "🧭 **{name}** sucht noch den Weg zum Punktetriumph – aktuell bei {punkte:.1f} Punkten.",
 "🎒 **{name}** sammelt Erfahrung am Tabellenende – {punkte:.1f} Punkte sind nur der Anfang.",
 "🪶 **{name}** landet sanft auf dem letzten Platz mit {punkte:.1f} Punkten, aber wer weiß, wie lange noch?",
-]
+    ]
 
 kommentare_rundensieger = [
     "💥 **{name}** schnappt sich diese Runde mit +{gewinn:.1f} Punkten. Boom!",
@@ -180,7 +180,7 @@ kommentare_rundensieger = [
     "🧠 **{name}** spielt clever und sichert sich +{gewinn:.1f} Punkte, Strategie zahlt sich aus!",
     "🎲 **{name}** würfelt das Glück auf seine Seite – +{gewinn:.1f} Punkte!",
     "🦾 **{name}** zeigt Stärke und holt +{gewinn:.1f} Punkte, eine Maschine auf dem Spielfeld!",
-]
+    ]
 
 kommentare_bonus = [
     "🧲 **{name}** bekommt den Bonus – Letzter sein zahlt sich wohl doch aus!",
@@ -196,7 +196,7 @@ kommentare_bonus = [
     "📦 **{name}** packt den Bonus aus – ein Geschenk für den Underdog.",
     "🧬 **{name}** bekommt evolutionäre Unterstützung – Bonuspunkte für den nächsten Schritt.",
     "🕹️ **{name}** aktiviert den Bonus-Modus – vielleicht ist das der Gamechanger!",
-]
+    ]
 
 kommentare_bonus_gewinnt = [
     "⚡ **{name}** nutzt Rubber-Banding und rasiert die Runde mit +{gewinn:.1f} Punkten!",
@@ -212,10 +212,10 @@ kommentare_bonus_gewinnt = [
     "🧬 **{name}** mutiert zum Rundensieger – +{gewinn:.1f} Punkte durch Bonus-Evolution!",
     "🎯 **{name}** trifft aus dem Off – +{gewinn:.1f} Punkte und alle schauen verdutzt!",
     "🦾 **{name}** zeigt Comeback-Qualitäten – +{gewinn:.1f} Punkte und plötzlich ganz vorn!",
-]
+    ]
 
-# Kommentar zusammenbauen
-kommentar_text = ""
+    # Kommentar zusammenbauen
+    kommentar_text = ""
     
     if bonus_empfaenger and rundensieger[0] == bonus_empfaenger:
         kommentar_text += random.choice(kommentare_bonus_gewinnt).format(
