@@ -348,7 +348,14 @@ spieler, punkteverlauf, bonus_empfaenger_pro_runde = berechne_punktestand(
 )
 
 # Kommentar generieren (GECACHT!)
-kommentar = generiere_kommentar(spieler, daten["runden"], bonus_empfaenger_pro_runde)
+@st.cache_data(ttl=300, show_spinner=False)
+def generiere_kommentar_cached(spieler_liste, runden_liste, bonus_empfaenger_pro_runde):
+    # Wir erzeugen einen Hash/Key basierend auf dem Punktestand der aktuellen Runde
+    aktuelle_punkte = tuple(sp["punkte"] for sp in spieler_liste)
+    # Der Cache nutzt den Key automatisch über die Funktionseingaben
+    return generiere_kommentar(spieler_liste, runden_liste, bonus_empfaenger_pro_runde)
+    
+kommentar = generiere_kommentar_cached(spieler, daten["runden"], bonus_empfaenger_pro_runde)
 
 #Sprachausgabe des Kommentars
 kommentar_clean = re.sub(r"\*+", "", kommentar)
