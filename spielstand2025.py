@@ -133,8 +133,8 @@ def generiere_kommentar(spieler_liste, runden_liste, bonus_empfaenger_pro_runde)
     rundensieger = max(gewinne_letzte_runde, key=lambda x: x[1])
     bonus_empfaenger = bonus_empfaenger_pro_runde[letzte_runde_idx] if letzte_runde_idx > 0 else None
 
-    # Kommentar-Templates (gekürzt - du kannst deine vollständigen Listen wieder einfügen)
-    kommentare_fuehrend = [
+    # Kommentar-Templates
+kommentare_fuehrend = [
     "🥇 **{name}** führt jetzt mit {punkte:.1f} Punkten. Niemand stoppt diesen Siegeszug!",
     "🚀 **{name}** stürmt an die Spitze! {punkte:.1f} Punkte und kein Ende in Sicht!",
     "👑 **{name}** thront über allen mit {punkte:.1f} Punkten. Ein König unter Spielern!",
@@ -429,3 +429,4 @@ with col8:
     st.metric("📊 Spannungsindex", 
               f"±{stats['spannungsindex']:.2f}", 
               "Punkte-Streuung")
+
