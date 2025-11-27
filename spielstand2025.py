@@ -9,6 +9,19 @@ import streamlit_autorefresh
 from datetime import datetime
 from zoneinfo import ZoneInfo
 
+# ---- Sprach-Ausgabe beim Start ----
+components.html(
+    """
+    <script>
+        const msg = new SpeechSynthesisUtterance("Willkommen zu den Vatertagsspielen!");
+        msg.lang = "de-DE";
+        window.speechSynthesis.cancel();
+        window.speechSynthesis.speak(msg);
+    </script>
+    """,
+    height=0,
+)
+
 st.set_page_config(page_title="📺 Live Spielstand", layout="wide")
 
 # Auto-Refresh alle 1 Minuten (60.000 Millisekunden)
