@@ -16,15 +16,11 @@ import streamlit.components.v1 as components
 
 st.title("🎲 Vatertagsspiele 2026 - Spielstand (live)")
 
-# Text, der vorgelesen werden soll
-# text_to_say = "Willkommen zu den Vatertagsspielen 2026!"
-text_to_say = new SpeechSynthesisUtterance({json.dumps(kommentar)});
-
 # JavaScript einbetten
 components.html(
     f"""
     <script>
-        const msg = new SpeechSynthesisUtterance("{text_to_say}");
+        const msg = new SpeechSynthesisUtterance({json.dumps(kommentar)});
         msg.lang = "de-DE";
         window.speechSynthesis.cancel();      // vorherige Ausgaben stoppen
         window.speechSynthesis.speak(msg);    // direkt sprechen
