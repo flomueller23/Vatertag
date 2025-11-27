@@ -363,6 +363,9 @@ kommentar_clean = re.sub(r"\*+", "", kommentar)
 # Emojis entfernen (alles außerhalb von Standardzeichen)
 kommentar_clean = re.sub(r"[^\w\s.,!?-]", "", kommentar_clean)
 
+# . druch , ersetzen
+kommentar_clean = kommentar_clean.replace(".", ",")
+
 components.html(
     f"""
     <script>
