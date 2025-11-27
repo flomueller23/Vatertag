@@ -351,12 +351,15 @@ spieler, punkteverlauf, bonus_empfaenger_pro_runde = berechne_punktestand(
 kommentar = generiere_kommentar(spieler, daten["runden"], bonus_empfaenger_pro_runde)
 
 #Sprachausgabe des Kommentars
-kommentar_fuer_sprachausgabe = re.sub(r"\*+", "", kommentar)
+kommentar_clean = re.sub(r"\*+", "", kommentar)
+
+# Emojis entfernen (alles außerhalb von Standardzeichen)
+kommentar_clean = re.sub(r"[^\w\s.,!?-]", "", kommentar_clean)
 
 components.html(
     f"""
     <script>
-        const msg = new SpeechSynthesisUtterance({json.dumps(kommentar_fuer_sprachausgabe)});
+        const msg = new SpeechSynthesisUtterance({json.dumps(kommentar_clean)});
         msg.lang = "de-DE";
         window.speechSynthesis.cancel();
         window.speechSynthesis.speak(msg);
