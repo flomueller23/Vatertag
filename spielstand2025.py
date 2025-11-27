@@ -134,7 +134,7 @@ def generiere_kommentar(spieler_liste, runden_liste, bonus_empfaenger_pro_runde)
     bonus_empfaenger = bonus_empfaenger_pro_runde[letzte_runde_idx] if letzte_runde_idx > 0 else None
 
     # Kommentar-Templates
-kommentare_fuehrend = [
+    kommentare_fuehrend = [
     "🥇 **{name}** führt jetzt mit {punkte:.1f} Punkten. Niemand stoppt diesen Siegeszug!",
     "🚀 **{name}** stürmt an die Spitze! {punkte:.1f} Punkte und kein Ende in Sicht!",
     "👑 **{name}** thront über allen mit {punkte:.1f} Punkten. Ein König unter Spielern!",
@@ -150,23 +150,23 @@ kommentare_fuehrend = [
     "🏇 **{name}** galoppiert dem Feld davon – {punkte:.1f} Punkte auf dem Konto!",
     ]
 
-kommentare_letzter = [
+    kommentare_letzter = [
     "🐢 **{name}** hinkt mit {punkte:.1f} Punkten hinterher. Vielleicht war das ein geheimer Plan?",
     "🪨 **{name}** hält das Feld stabil von hinten – {punkte:.1f} Punkte und viel Luft nach oben.",
     "🌌 **{name}** ist auf Entdeckungsreise im unteren Punktesektor ({punkte:.1f}).",
     "🕳️ **{name}** erkundet die Tiefen der Punktetabelle mit {punkte:.1f} Punkten, ganz ohne Eile.",
-"🐌 **{name}** nimmt das Rennen gelassen – {punkte:.1f} Punkte und jede Menge Potenzial!",
-"🧊 **{name}** bleibt cool am Tabellenende mit {punkte:.1f} Punkten, vielleicht kommt der große Sprung noch?",
-"🌱 **{name}** wächst langsam, aber stetig – {punkte:.1f} Punkte sind erst der Anfang.",
-"🪁 **{name}** schwebt am unteren Rand mit {punkte:.1f} Punkten, bereit für den Aufwind?",
-"🛸 **{name}** funkt aus der unteren Liga – {punkte:.1f} Punkte und eine Mission im Gange.",
-"🦥 **{name}** bewegt sich gemächlich mit {punkte:.1f} Punkten, aber unterschätze nie den Spätstarter!",
-"🧭 **{name}** sucht noch den Weg zum Punktetriumph – aktuell bei {punkte:.1f} Punkten.",
-"🎒 **{name}** sammelt Erfahrung am Tabellenende – {punkte:.1f} Punkte sind nur der Anfang.",
-"🪶 **{name}** landet sanft auf dem letzten Platz mit {punkte:.1f} Punkten, aber wer weiß, wie lange noch?",
+    "🐌 **{name}** nimmt das Rennen gelassen – {punkte:.1f} Punkte und jede Menge Potenzial!",
+    "🧊 **{name}** bleibt cool am Tabellenende mit {punkte:.1f} Punkten, vielleicht kommt der große Sprung noch?",
+    "🌱 **{name}** wächst langsam, aber stetig – {punkte:.1f} Punkte sind erst der Anfang.",
+    "🪁 **{name}** schwebt am unteren Rand mit {punkte:.1f} Punkten, bereit für den Aufwind?",
+    "🛸 **{name}** funkt aus der unteren Liga – {punkte:.1f} Punkte und eine Mission im Gange.",
+    "🦥 **{name}** bewegt sich gemächlich mit {punkte:.1f} Punkten, aber unterschätze nie den Spätstarter!",
+    "🧭 **{name}** sucht noch den Weg zum Punktetriumph – aktuell bei {punkte:.1f} Punkten.",
+    "🎒 **{name}** sammelt Erfahrung am Tabellenende – {punkte:.1f} Punkte sind nur der Anfang.",
+    "🪶 **{name}** landet sanft auf dem letzten Platz mit {punkte:.1f} Punkten, aber wer weiß, wie lange noch?",
     ]
 
-kommentare_rundensieger = [
+    kommentare_rundensieger = [
     "💥 **{name}** schnappt sich diese Runde mit +{gewinn:.1f} Punkten. Boom!",
     "🔥 **{name}** dominiert die Runde! +{gewinn:.1f} Punkte sind kein Zufall.",
     "🎯 **{name}** trifft ins Schwarze – +{gewinn:.1f} Punkte in einer Runde!",
@@ -182,7 +182,7 @@ kommentare_rundensieger = [
     "🦾 **{name}** zeigt Stärke und holt +{gewinn:.1f} Punkte, eine Maschine auf dem Spielfeld!",
     ]
 
-kommentare_bonus = [
+    kommentare_bonus = [
     "🧲 **{name}** bekommt den Bonus – Letzter sein zahlt sich wohl doch aus!",
     "🔁 **{name}** nutzt Rubber-Banding – vielleicht klappt's ja nächstes Mal richtig!",
     "🎁 Bonuszeit für **{name}**! Manchmal ist Verlieren einfach lohnenswert.",
@@ -198,7 +198,7 @@ kommentare_bonus = [
     "🕹️ **{name}** aktiviert den Bonus-Modus – vielleicht ist das der Gamechanger!",
     ]
 
-kommentare_bonus_gewinnt = [
+    kommentare_bonus_gewinnt = [
     "⚡ **{name}** nutzt Rubber-Banding und rasiert die Runde mit +{gewinn:.1f} Punkten!",
     "👀 **{name}** kommt von hinten – mit Bonus +{gewinn:.1f} Punkte! Da staunt das Feld.",
     "🧨 **{name}** startet durch! Rubber-Banding at its best: +{gewinn:.1f} Punkte!",
