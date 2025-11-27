@@ -10,14 +10,21 @@ from datetime import datetime
 from zoneinfo import ZoneInfo
 import streamlit.components.v1 as components
 
-# ---- Sprach-Ausgabe beim Start ----
+# ----------------------------------------------------
+# 👇 HIER kommt dein Vorlese-Code hin
+# ----------------------------------------------------
+
+# Text, der vorgelesen werden soll
+text_to_say = "Willkommen zu den Vatertagsspielen 2026!"
+
+# JavaScript einbetten
 components.html(
-    """
+    f"""
     <script>
-        const msg = new SpeechSynthesisUtterance("Willkommen zu den Vatertagsspielen!");
+        const msg = new SpeechSynthesisUtterance("{text_to_say}");
         msg.lang = "de-DE";
-        window.speechSynthesis.cancel();
-        window.speechSynthesis.speak(msg);
+        window.speechSynthesis.cancel();      // vorherige Ausgaben stoppen
+        window.speechSynthesis.speak(msg);    // direkt sprechen
     </script>
     """,
     height=0,
