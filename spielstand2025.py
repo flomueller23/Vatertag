@@ -10,6 +10,8 @@ from datetime import datetime
 from zoneinfo import ZoneInfo
 import streamlit.components.v1 as components
 import re
+import openai
+from pathlib import Path
 
 st.set_page_config(page_title="📺 Live Spielstand", layout="wide")
 
@@ -391,6 +393,26 @@ components.html(
     """,
     height=0,
 )
+
+kommentar = "Willkommen zu den Vatertagsspielen 2026!"
+
+# OpenAI API-Key aus Streamlit-Secrets
+openai.api_key = st.secrets["OPENAI_API_KEY"]
+
+# Text-to-Speech erzeugen
+audio_file = Path("kommentar.mp3")
+
+if not audio_file.exists():
+    response = openai.audio.speech.create(
+        model="gpt-4o-mini-tts",  # OpenAI TTS Modell
+        voice="alloy",             # Stimme auswählen
+        input=kommentar
+    )
+    # Audio speichern
+    audio_file.write_bytes(response.audio)
+
+# Streamlit Audio-Player
+st.audio(str(audio_file))
 
 # Statistiken berechnen (GECACHT!)
 stats = berechne_statistiken(spieler, bonus_empfaenger_pro_runde, punkteverlauf)
