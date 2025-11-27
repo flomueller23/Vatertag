@@ -8,6 +8,7 @@ import random
 import streamlit_autorefresh
 from datetime import datetime
 from zoneinfo import ZoneInfo
+import streamlit.components.v1 as components
 
 # ---- Sprach-Ausgabe beim Start ----
 components.html(
