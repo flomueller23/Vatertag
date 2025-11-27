@@ -14,8 +14,11 @@ import streamlit.components.v1 as components
 # 👇 HIER kommt dein Vorlese-Code hin
 # ----------------------------------------------------
 
+st.title("🎲 Vatertagsspiele 2026 - Spielstand (live)")
+
 # Text, der vorgelesen werden soll
-text_to_say = "Willkommen zu den Vatertagsspielen 2026!"
+# text_to_say = "Willkommen zu den Vatertagsspielen 2026!"
+text_to_say = new SpeechSynthesisUtterance({json.dumps(kommentar)});
 
 # JavaScript einbetten
 components.html(
