@@ -11,8 +11,8 @@ from zoneinfo import ZoneInfo
 
 st.set_page_config(page_title="📺 Live Spielstand", layout="wide")
 
-# Auto-Refresh alle 5 Minuten (300.000 Millisekunden)
-streamlit_autorefresh.st_autorefresh(interval=300_000, key="refresh")
+# Auto-Refresh alle 1 Minuten (60.000 Millisekunden)
+streamlit_autorefresh.st_autorefresh(interval=60_000, key="refresh")
 
 # 🔒 Fester Spielname – HIER ANPASSEN!
 FESTER_SPIELNAME = "Vatertagsspiele 2026"
