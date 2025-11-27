@@ -409,7 +409,8 @@ st.subheader("📊 Aktueller Punktestand")
 tabelle = []
 for sp in sorted(spieler, key=lambda x: -x["punkte"]):
     zeile = {"Spieler": sp["name"], "Punkte": round(sp["punkte"], 1)}
-    for i, runde in enumerate(daten["runden"]):
+    for i, runde in reversed(list(enumerate(daten["runden"]))):
+    #for i, runde in enumerate(daten["runden"]):
         bonus = "★" if i > 0 and sp["name"] == bonus_empfaenger_pro_runde[i] else ""
         zeile[runde["name"]] = f"E: {sp['einsaetze'][i]} | P: {sp['plaetze'][i]} | +{round(sp['gewinne'][i],1)}{bonus}"
     tabelle.append(zeile)
